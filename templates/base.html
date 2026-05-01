@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Claude Code Tutorial{% endblock %}</title>
+
+  <!-- Tailwind Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            sidebar: '#1a1f2e',
+            accent: '#6366f1',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Prism.js (tomorrow dark theme) -->
+  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="{{ depth }}assets/style.css">
+</head>
+
+<body class="font-sans bg-[#f9f8f6] text-gray-800">
+
+  <!-- Sidebar -->
+  <aside id="sidebar"
+         class="fixed top-0 left-0 h-full w-60 bg-sidebar text-white overflow-y-auto z-20 transition-transform">
+    <div class="p-5">
+      <a href="{{ depth }}index.html"
+         class="block text-white font-semibold text-sm mb-8 opacity-90 hover:opacity-100">
+        Claude Code Tutorial
+      </a>
+      <nav>
+        {% for ch in chapters %}
+        {% set idx = loop.index0 %}
+        <div class="mb-0.5">
+          <a href="{{ depth }}{{ ch.id }}/index.html"
+             class="flex items-center gap-2 px-3 py-2 rounded text-sm
+                    {% if ch.id == chapter.id %}
+                      text-white font-semibold bg-white/10
+                    {% else %}
+                      text-gray-400 hover:text-white hover:bg-white/5
+                    {% endif %}">
+            <span class="text-xs opacity-50 font-mono w-5">{{ '%02d' % idx }}</span>
+            <span>{{ ch.title }}</span>
+          </a>
+          {% if ch.id == chapter.id %}
+          <div class="ml-7 mt-1 mb-2 space-y-0.5 border-l border-white/10 pl-3">
+            {% for pt in ['lecture', 'tips', 'exercises', 'quiz'] %}
+            <a href="{{ depth }}{{ ch.id }}/{{ pt }}.html"
+               class="block py-1 text-xs rounded
+                      {% if page_type == pt %}
+                        text-accent font-semibold
+                      {% else %}
+                        text-gray-500 hover:text-gray-200
+                      {% endif %}">
+              {{ pt | capitalize }}
+            </a>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </nav>
+    </div>
+  </aside>
+
+  <!-- Main -->
+  <div class="ml-60">
+    <!-- Top bar -->
+    <header class="sticky top-0 bg-white/80 backdrop-blur border-b border-gray-200 z-10">
+      <div class="px-10 py-3 flex items-center justify-between">
+        <span class="text-sm font-medium text-gray-700">
+          {% block page_title %}{% endblock %}
+        </span>
+        <span class="text-xs font-medium uppercase tracking-widest text-gray-400">
+          {% block page_badge %}{% endblock %}
+        </span>
+      </div>
+      <!-- Progress bar -->
+      <div class="h-0.5 bg-accent/80"
+           style="width: {{ ((chapter_index + 1) / chapters|length * 100)|round|int }}%">
+      </div>
+    </header>
+
+    <!-- Content area -->
+    <main class="px-10 py-10 max-w-[800px]">
+      {% block main %}{% endblock %}
+    </main>
+
+    <!-- Prev / Next navigation -->
+    <footer class="px-10 py-8 border-t border-gray-200 flex items-center justify-between">
+      {% if prev_page %}
+      <a href="{{ depth }}{{ prev_page.chapter.id }}/{{ prev_page.page }}.html"
+         class="flex items-center gap-2 text-sm text-accent hover:underline">
+        ← {{ prev_page.chapter.title }} · {{ prev_page.page | capitalize }}
+      </a>
+      {% else %}<span></span>{% endif %}
+
+      {% if next_page %}
+      <a href="{{ depth }}{{ next_page.chapter.id }}/{{ next_page.page }}.html"
+         class="flex items-center gap-2 text-sm text-accent hover:underline">
+        {{ next_page.chapter.title }} · {{ next_page.page | capitalize }} →
+      </a>
+      {% else %}<span></span>{% endif %}
+    </footer>
+  </div>
+
+  <!-- Prism.js -->
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/prism.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-python.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-bash.min.js"></script>
+
+  {% block scripts %}{% endblock %}
+</body>
+</html>
