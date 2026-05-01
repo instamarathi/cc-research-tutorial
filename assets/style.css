@@ -1,0 +1,71 @@
+/* ── Prose content ─────────────────────────────────────────────────────────── */
+.prose-content h1 { font-size: 1.875rem; font-weight: 700; margin: 0 0 0.5rem; color: #111827; }
+.prose-content h2 { font-size: 1.375rem; font-weight: 600; margin: 2rem 0 0.75rem; color: #1f2937; }
+.prose-content h3 { font-size: 1.125rem; font-weight: 600; margin: 1.5rem 0 0.5rem; color: #374151; }
+.prose-content p  { line-height: 1.75; margin: 0 0 1rem; color: #374151; }
+.prose-content ul, .prose-content ol { padding-left: 1.5rem; margin: 0 0 1rem; }
+.prose-content li { line-height: 1.75; margin-bottom: 0.25rem; color: #374151; }
+.prose-content a  { color: #6366f1; text-decoration: underline; }
+.prose-content a:hover { color: #4f46e5; }
+.prose-content code { font-family: 'JetBrains Mono', monospace; font-size: 0.875em;
+                      background: #f3f4f6; padding: 0.15em 0.4em; border-radius: 4px; color: #be185d; }
+.prose-content pre { border-radius: 8px; margin: 1.25rem 0; overflow-x: auto; }
+.prose-content pre code { background: none; padding: 0; color: inherit; font-size: 0.875rem; }
+.prose-content blockquote { border-left: 3px solid #d1d5db; padding-left: 1rem;
+                             color: #6b7280; font-style: italic; margin: 1rem 0; }
+.prose-content table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.9rem; }
+.prose-content th { text-align: left; padding: 0.5rem 0.75rem; background: #f9fafb;
+                    border-bottom: 2px solid #e5e7eb; font-weight: 600; }
+.prose-content td { padding: 0.5rem 0.75rem; border-bottom: 1px solid #f3f4f6; }
+
+/* ── Callout boxes ─────────────────────────────────────────────────────────── */
+.callout {
+  border-left: 4px solid;
+  border-radius: 0 8px 8px 0;
+  padding: 0.875rem 1rem;
+  margin: 1.25rem 0;
+}
+.callout-label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.4rem;
+}
+.callout p { margin: 0; font-size: 0.9rem; line-height: 1.6; }
+
+.callout-tip  { border-color: #fbbf24; background: #fffbeb; }
+.callout-tip  .callout-label { color: #b45309; }
+
+.callout-try  { border-color: #22c55e; background: #f0fdf4; }
+.callout-try  .callout-label { color: #15803d; }
+
+.callout-warn { border-color: #f97316; background: #fff7ed; }
+.callout-warn .callout-label { color: #c2410c; }
+
+.callout-note { border-color: #3b82f6; background: #eff6ff; }
+.callout-note .callout-label { color: #1d4ed8; }
+
+/* ── Copy button ───────────────────────────────────────────────────────────── */
+.copy-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.7rem;
+  font-family: 'JetBrains Mono', monospace;
+  background: rgba(255,255,255,0.12);
+  color: #d1d5db;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.copy-btn:hover { background: rgba(255,255,255,0.2); }
+
+/* ── Quiz ──────────────────────────────────────────────────────────────────── */
+.mcq-option { cursor: pointer; }
+.mcq-option.correct  { background: #f0fdf4 !important; border-color: #22c55e !important; color: #15803d; font-weight: 500; }
+.mcq-option.wrong    { background: #fef2f2 !important; border-color: #ef4444 !important; color: #b91c1c; }
+.mcq-option:disabled { cursor: default; }

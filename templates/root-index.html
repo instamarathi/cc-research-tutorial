@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Claude Code Tutorial</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Inter', 'sans-serif'] },
+          colors: { accent: '#6366f1' }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body class="font-sans bg-[#f9f8f6] text-gray-800 min-h-screen">
+  <div class="max-w-4xl mx-auto px-8 py-16">
+    <!-- Hero -->
+    <div class="mb-16 text-center">
+      <div class="inline-block bg-accent/10 text-accent text-xs font-semibold px-3 py-1 rounded-full mb-4 uppercase tracking-widest">
+        Self-paced · 8 Chapters · ~4 hours
+      </div>
+      <h1 class="text-4xl font-bold text-gray-900 mb-4">Claude Code Tutorial</h1>
+      <p class="text-lg text-gray-600 max-w-xl mx-auto">
+        You've been using a calculator. This is the computer.
+        Learn to use Claude Code as a research superpower.
+      </p>
+      <a href="{{ chapters[0].id }}/index.html"
+         class="inline-block mt-8 px-6 py-3 bg-accent text-white font-semibold rounded-lg hover:bg-indigo-700 transition-colors">
+        Start Chapter 00 →
+      </a>
+    </div>
+
+    <!-- Chapter cards -->
+    <div class="space-y-3">
+      {% for ch in chapters %}
+      {% set idx = loop.index0 %}
+      <a href="{{ ch.id }}/index.html"
+         class="group flex items-start gap-5 p-5 bg-white rounded-xl border border-gray-200
+                hover:border-accent/50 hover:shadow-sm transition-all">
+        <span class="text-2xl font-mono font-bold text-gray-200 group-hover:text-accent/30 transition-colors min-w-[2.5rem]">
+          {{ '%02d' % idx }}
+        </span>
+        <div class="flex-1">
+          <h2 class="font-semibold text-gray-800 group-hover:text-accent transition-colors">{{ ch.title }}</h2>
+          <p class="text-sm text-gray-500 mt-0.5">{{ ch.desc }}</p>
+        </div>
+        <span class="text-xs text-gray-400 self-center shrink-0">{{ ch.time }}</span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</body>
+</html>
