@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+
+{% block title %}{{ chapter.title }} — Quiz{% endblock %}
+{% block page_title %}{{ chapter.title }}{% endblock %}
+{% block page_badge %}Quiz{% endblock %}
+
+{% block main %}
+<div class="quiz-container">
+  <h1 class="text-2xl font-bold mb-2">Quiz</h1>
+  <p class="text-gray-500 mb-8 text-sm">{{ chapter.title }}</p>
+
+  {% for q in questions %}
+  <div class="question-block mb-10" data-qindex="{{ loop.index0 }}">
+
+    {% if q.type == 'mcq' %}
+    <div class="mcq-block">
+      <p class="font-semibold text-gray-800 mb-4 text-base">
+        {{ loop.index }}. {{ q.question }}
+      </p>
+      <div class="options-grid space-y-2">
+        {% for opt in q.options %}
+        <button class="mcq-option w-full text-left px-4 py-3 rounded-lg border border-gray-200
+                        bg-white hover:bg-gray-50 text-sm transition-colors"
+                data-correct="{{ opt.correct | lower }}">
+          {{ opt.text }}
+        </button>
+        {% endfor %}
+      </div>
+      <div class="explanation hidden mt-4 p-4 bg-indigo-50 rounded-lg text-sm text-indigo-800 border border-indigo-100">
+        {{ q.explanation }}
+      </div>
+    </div>
+
+    {% elif q.type == 'think' %}
+    <div class="think-block">
+      <p class="font-semibold text-gray-800 mb-3 text-base">
+        {{ loop.index }}. {{ q.question }}
+      </p>
+      <textarea class="w-full h-28 p-3 border border-gray-200 rounded-lg text-sm
+                       bg-white focus:outline-none focus:border-accent resize-y"
+                placeholder="Write your answer here…"></textarea>
+      <button class="reveal-btn mt-3 px-4 py-2 text-sm font-medium text-accent
+                     border border-accent rounded-lg hover:bg-accent hover:text-white transition-colors">
+        Reveal suggested answer
+      </button>
+      <div class="answer hidden mt-3 p-4 bg-green-50 rounded-lg text-sm text-green-800 border border-green-100">
+        {{ q.answer }}
+      </div>
+    </div>
+    {% endif %}
+
+  </div>
+  {% endfor %}
+</div>
+
+<script src="{{ depth }}assets/quiz.js"></script>
+{% endblock %}

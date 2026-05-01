@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}{{ chapter.title }} — Exercises{% endblock %}
+{% block page_title %}{{ chapter.title }}{% endblock %}
+{% block page_badge %}Exercises{% endblock %}
+
+{% block main %}
+<article class="prose-content">
+  {{ content | safe }}
+</article>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  document.querySelectorAll('pre').forEach(pre => {
+    const btn = document.createElement('button');
+    btn.textContent = 'Copy';
+    btn.className = 'copy-btn';
+    btn.addEventListener('click', () => {
+      navigator.clipboard.writeText(pre.querySelector('code').innerText);
+      btn.textContent = 'Copied!';
+      setTimeout(() => btn.textContent = 'Copy', 2000);
+    });
+    pre.style.position = 'relative';
+    pre.appendChild(btn);
+  });
+</script>
+{% endblock %}

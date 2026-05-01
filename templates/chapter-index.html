@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block title %}{{ chapter.title }}{% endblock %}
+{% block page_title %}{{ chapter.title }}{% endblock %}
+{% block page_badge %}Chapter {{ '%02d' % chapter_index }}{% endblock %}
+
+{% block main %}
+<div class="mb-8">
+  <span class="text-xs font-mono text-gray-400 uppercase tracking-widest">
+    Chapter {{ '%02d' % chapter_index }} · {{ chapter.time }}
+  </span>
+  <h1 class="text-3xl font-bold mt-2 mb-3">{{ chapter.title }}</h1>
+  <p class="text-gray-600 text-base">{{ chapter.desc }}</p>
+</div>
+
+<div class="grid grid-cols-2 gap-4 mt-10">
+  {% for pt, icon, color in [
+      ('lecture',   '📖', 'indigo'),
+      ('tips',      '💡', 'yellow'),
+      ('exercises', '⚡', 'green'),
+      ('quiz',      '🧠', 'purple')
+  ] %}
+  <a href="{{ pt }}.html"
+     class="group block p-5 rounded-xl border border-gray-200 bg-white
+            hover:border-{{ color }}-300 hover:shadow-sm transition-all">
+    <span class="text-2xl mb-3 block">{{ icon }}</span>
+    <h2 class="font-semibold text-gray-800 group-hover:text-accent">{{ pt | capitalize }}</h2>
+    <p class="text-xs text-gray-500 mt-1">
+      {% if pt == 'lecture' %}Core concepts and explanations
+      {% elif pt == 'tips' %}Shortcuts, patterns, and tricks
+      {% elif pt == 'exercises' %}Hands-on practice with CC
+      {% else %}Test your understanding
+      {% endif %}
+    </p>
+  </a>
+  {% endfor %}
+</div>
+
+{% if prev_chapter or next_chapter %}
+<div class="flex justify-between mt-12 pt-8 border-t border-gray-200">
+  {% if prev_chapter %}
+  <a href="{{ depth }}{{ prev_chapter.id }}/index.html"
+     class="text-sm text-accent hover:underline">← {{ prev_chapter.title }}</a>
+  {% else %}<span></span>{% endif %}
+  {% if next_chapter %}
+  <a href="{{ depth }}{{ next_chapter.id }}/index.html"
+     class="text-sm text-accent hover:underline">{{ next_chapter.title }} →</a>
+  {% else %}<span></span>{% endif %}
+</div>
+{% endif %}
+{% endblock %}
