@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+
+# Generated HTML (rebuild with python build.py)
+ch*/lecture.html
+ch*/tips.html
+ch*/exercises.html
+ch*/quiz.html
+ch*/index.html
+index.html
+
+# macOS
+.DS_Store
