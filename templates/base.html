@@ -131,13 +131,25 @@
         <span class="text-xs font-medium uppercase tracking-widest text-gray-400">
           {% block page_badge %}{% endblock %}
         </span>
-        <button id="user-btn" onclick="firebase.auth().signOut()" style="display:none"
-          class="flex items-center gap-2 text-xs text-gray-400 hover:text-gray-600 transition-colors">
-          <img id="user-avatar" src="" alt="" width="24" height="24"
-               class="rounded-full border border-gray-200">
-          <span id="user-name"></span>
-          <span class="opacity-50">· Sign out</span>
-        </button>
+        <div class="flex items-center gap-3">
+          <button id="share-btn" title="Share this page"
+            class="flex items-center gap-1.5 text-xs text-gray-400 hover:text-gray-600 transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+              <polyline points="16 6 12 2 8 6"/>
+              <line x1="12" y1="2" x2="12" y2="15"/>
+            </svg>
+            <span id="share-label">Share</span>
+          </button>
+          <button id="user-btn" onclick="firebase.auth().signOut()" style="display:none"
+            class="flex items-center gap-2 text-xs text-gray-400 hover:text-gray-600 transition-colors">
+            <img id="user-avatar" src="" alt="" width="24" height="24"
+                 class="rounded-full border border-gray-200">
+            <span id="user-name"></span>
+            <span class="opacity-50">· Sign out</span>
+          </button>
+        </div>
       </div>
       <!-- Progress bar -->
       <div class="h-0.5 bg-accent/80"
@@ -207,6 +219,21 @@
         signinPanel.style.display = 'block';
         userBtn.style.display = 'none';
       }
+    });
+
+    // Share button
+    const shareLabel = document.getElementById('share-label');
+    document.getElementById('share-btn').addEventListener('click', async () => {
+      const shareData = { title: document.title, url: location.href };
+      try {
+        if (navigator.share) {
+          await navigator.share(shareData);
+        } else {
+          await navigator.clipboard.writeText(location.href);
+          shareLabel.textContent = 'Copied!';
+          setTimeout(() => shareLabel.textContent = 'Share', 2000);
+        }
+      } catch (_) {}
     });
   </script>
 </body>

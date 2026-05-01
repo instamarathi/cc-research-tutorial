@@ -192,6 +192,23 @@
   </div>
 
   <a href="index.html" class="back-btn">← Chapter</a>
+  <button id="share-btn" title="Share this presentation" style="
+    position:fixed;top:14px;right:14px;z-index:1000;
+    background:#f5f3ff;color:#4f46e5;
+    border:1px solid #c7d2fe;border-radius:6px;
+    padding:5px 12px;cursor:pointer;
+    font-size:12px;font-family:'Inter',sans-serif;font-weight:600;
+    display:flex;align-items:center;gap:6px;
+    transition:background .15s;
+  " onmouseover="this.style.background='#ede9fe'" onmouseout="this.style.background='#f5f3ff'">
+    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24"
+         fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/>
+      <polyline points="16 6 12 2 8 6"/>
+      <line x1="12" y1="2" x2="12" y2="15"/>
+    </svg>
+    <span id="share-label">Share</span>
+  </button>
 
   <div class="reveal">
     <div class="slides">
@@ -258,6 +275,20 @@
         loading.style.display = 'none';
         signinPanel.style.display = 'block';
       }
+    });
+
+    // Share button
+    const shareLabel = document.getElementById('share-label');
+    document.getElementById('share-btn').addEventListener('click', async () => {
+      try {
+        if (navigator.share) {
+          await navigator.share({ title: document.title, url: location.href });
+        } else {
+          await navigator.clipboard.writeText(location.href);
+          shareLabel.textContent = 'Copied!';
+          setTimeout(() => shareLabel.textContent = 'Share', 2000);
+        }
+      } catch (_) {}
     });
   </script>
 </body>
