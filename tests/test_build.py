@@ -53,3 +53,53 @@ def test_render_md_preserves_surrounding_content():
     assert "<h1" in html
     assert "Normal paragraph" in html
     assert "callout-tip" in html
+
+from build import parse_quiz
+
+SAMPLE_QUIZ = """## Q1
+
+What does CC stand for?
+
+- [ ] Cloud Computing
+- [x] Claude Code
+- [ ] Code Compiler
+- [ ] Custom CLI
+
+> CC always refers to Claude Code in this tutorial.
+
+---
+
+## Think
+
+Describe one way CC is better than copy-pasting from Claude.ai.
+
+<answer>
+CC can read your files directly — no copy-pasting needed.
+</answer>
+"""
+
+def test_parse_quiz_finds_mcq():
+    questions = parse_quiz(SAMPLE_QUIZ)
+    mcqs = [q for q in questions if q["type"] == "mcq"]
+    assert len(mcqs) == 1
+
+def test_parse_quiz_mcq_fields():
+    questions = parse_quiz(SAMPLE_QUIZ)
+    mcq = [q for q in questions if q["type"] == "mcq"][0]
+    assert "What does CC stand for?" in mcq["question"]
+    assert len(mcq["options"]) == 4
+    correct = [o for o in mcq["options"] if o["correct"]]
+    assert len(correct) == 1
+    assert "Claude Code" in correct[0]["text"]
+    assert "CC always refers" in mcq["explanation"]
+
+def test_parse_quiz_finds_thinking():
+    questions = parse_quiz(SAMPLE_QUIZ)
+    thinking = [q for q in questions if q["type"] == "think"]
+    assert len(thinking) == 1
+
+def test_parse_quiz_thinking_fields():
+    questions = parse_quiz(SAMPLE_QUIZ)
+    think = [q for q in questions if q["type"] == "think"][0]
+    assert "Describe one way" in think["question"]
+    assert "read your files directly" in think["answer"]
