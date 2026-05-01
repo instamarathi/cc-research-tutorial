@@ -119,3 +119,82 @@ def parse_quiz(text: str) -> list:
                     "explanation": ' '.join(explanation_lines).strip(),
                 })
     return questions
+
+
+def build():
+    root = Path(__file__).parent
+    env = Environment(loader=FileSystemLoader(str(root / 'templates')))
+    env.filters['zfill'] = lambda s, w: str(s).zfill(w)
+
+    for i, chapter in enumerate(CHAPTERS):
+        chapter_dir = root / chapter['id']
+        chapter_dir.mkdir(exist_ok=True)
+
+        for page_type in PAGE_TYPES:
+            md_path = chapter_dir / f'{page_type}.md'
+            if md_path.exists():
+                src = md_path.read_text(encoding='utf-8')
+            else:
+                src = f'# {page_type.capitalize()}\n\n_Content coming soon._'
+
+            if page_type == 'quiz':
+                questions = parse_quiz(src)
+                content_html = None
+            else:
+                questions = None
+                content_html = render_md(src)
+
+            tmpl = env.get_template(f'{page_type}.html')
+            html = tmpl.render(
+                chapter=chapter,
+                chapters=CHAPTERS,
+                chapter_index=i,
+                page_type=page_type,
+                content=content_html,
+                questions=questions,
+                depth='../',
+                prev_page=_prev_page(i, page_type),
+                next_page=_next_page(i, page_type),
+            )
+            (chapter_dir / f'{page_type}.html').write_text(html, encoding='utf-8')
+
+        idx_tmpl = env.get_template('chapter-index.html')
+        idx_html = idx_tmpl.render(
+            chapter=chapter,
+            chapters=CHAPTERS,
+            chapter_index=i,
+            depth='../',
+            prev_chapter=CHAPTERS[i - 1] if i > 0 else None,
+            next_chapter=CHAPTERS[i + 1] if i < len(CHAPTERS) - 1 else None,
+        )
+        (chapter_dir / 'index.html').write_text(idx_html, encoding='utf-8')
+
+    root_tmpl = env.get_template('root-index.html')
+    root_html = root_tmpl.render(chapters=CHAPTERS)
+    (root / 'index.html').write_text(root_html, encoding='utf-8')
+
+    print(f'✓ Built {len(CHAPTERS)} chapters → open index.html in your browser.')
+
+
+def _prev_page(chapter_index: int, page_type: str) -> dict:
+    page_order = PAGE_TYPES
+    pi = page_order.index(page_type)
+    if pi > 0:
+        return {"chapter": CHAPTERS[chapter_index], "page": page_order[pi - 1]}
+    if chapter_index > 0:
+        return {"chapter": CHAPTERS[chapter_index - 1], "page": page_order[-1]}
+    return None
+
+
+def _next_page(chapter_index: int, page_type: str) -> dict:
+    page_order = PAGE_TYPES
+    pi = page_order.index(page_type)
+    if pi < len(page_order) - 1:
+        return {"chapter": CHAPTERS[chapter_index], "page": page_order[pi + 1]}
+    if chapter_index < len(CHAPTERS) - 1:
+        return {"chapter": CHAPTERS[chapter_index + 1], "page": page_order[0]}
+    return None
+
+
+if __name__ == '__main__':
+    build()

@@ -103,3 +103,32 @@ def test_parse_quiz_thinking_fields():
     think = [q for q in questions if q["type"] == "think"][0]
     assert "Describe one way" in think["question"]
     assert "read your files directly" in think["answer"]
+
+
+def test_render_md_basic():
+    html = render_md('# Hello\nWorld.')
+    assert '<h1' in html
+
+def test_parse_quiz_returns_list():
+    questions = parse_quiz('## Q1\n\nQ?\n\n- [x] Right\n- [ ] Wrong\n\n> Exp.\n')
+    assert questions[0]['type'] == 'mcq'
+
+def test_prev_page_first_chapter_first_page():
+    from build import _prev_page
+    assert _prev_page(0, 'lecture') is None
+
+def test_next_page_last_chapter_last_page():
+    from build import _next_page
+    assert _next_page(7, 'quiz') is None
+
+def test_next_page_within_chapter():
+    from build import _next_page
+    result = _next_page(0, 'lecture')
+    assert result['page'] == 'tips'
+    assert result['chapter']['id'] == 'ch00'
+
+def test_prev_page_crosses_chapter():
+    from build import _prev_page
+    result = _prev_page(1, 'lecture')
+    assert result['page'] == 'quiz'
+    assert result['chapter']['id'] == 'ch00'
