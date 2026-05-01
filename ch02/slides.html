@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulations & Code — Slides</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --r-background-color: #ffffff;
+      --r-main-font: 'Inter', system-ui, sans-serif;
+      --r-heading-font: 'Inter', system-ui, sans-serif;
+      --r-heading-color: #312e81;
+      --r-heading-font-weight: 700;
+      --r-link-color: #6366f1;
+      --r-link-color-hover: #4338ca;
+      --r-selection-background-color: #c7d2fe;
+      --r-main-font-size: 28px;
+      --r-code-font: 'JetBrains Mono', monospace;
+    }
+
+    .reveal .slides section {
+      text-align: left;
+      overflow-y: auto;
+      max-height: 85vh;
+      padding: 0 0.5em;
+    }
+
+    .reveal h1, .reveal h2 {
+      text-transform: none;
+      letter-spacing: -0.02em;
+    }
+
+    .reveal h2 { font-size: 1.5em; margin-bottom: 0.6em; }
+    .reveal h3 { font-size: 1.15em; color: #4f46e5; margin: 0.8em 0 0.3em; }
+
+    .reveal p { line-height: 1.6; margin-bottom: 0.6em; font-size: 0.8em; }
+    .reveal li  { font-size: 0.78em; line-height: 1.55; }
+    .reveal ul, .reveal ol { margin-left: 1.2em; }
+
+    .reveal pre {
+      font-size: 0.6em;
+      border-radius: 6px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+      margin: 0.6em 0;
+    }
+
+    .reveal code:not(pre code) {
+      background: #eef2ff;
+      color: #4338ca;
+      padding: 0.1em 0.35em;
+      border-radius: 3px;
+      font-size: 0.82em;
+    }
+
+    .reveal blockquote {
+      border-left: 3px solid #6366f1;
+      background: #f5f3ff;
+      color: #3730a3;
+      padding: 0.5em 1em;
+      border-radius: 0 6px 6px 0;
+      font-style: normal;
+      font-size: 0.78em;
+      width: 95%;
+    }
+
+    .reveal table {
+      font-size: 0.7em;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    .reveal table th {
+      background: #eef2ff;
+      color: #312e81;
+      padding: 0.4em 0.8em;
+    }
+    .reveal table td { padding: 0.35em 0.8em; border-bottom: 1px solid #e5e7eb; }
+
+    /* Callout styles */
+    .reveal .callout {
+      border-radius: 6px;
+      padding: 0.6em 1em;
+      margin: 0.6em 0;
+      font-size: 0.72em;
+    }
+    .reveal .callout-tip  { background: #fefce8; border-left: 3px solid #eab308; }
+    .reveal .callout-try  { background: #eff6ff; border-left: 3px solid #3b82f6; }
+    .reveal .callout-warn { background: #fff7ed; border-left: 3px solid #f97316; }
+    .reveal .callout-note { background: #f0fdf4; border-left: 3px solid #22c55e; }
+    .reveal .callout-label {
+      font-weight: 700;
+      font-size: 0.85em;
+      display: block;
+      margin-bottom: 0.3em;
+    }
+    .reveal .callout p { margin: 0; font-size: 1em; }
+
+    /* Title slide */
+    .title-slide { text-align: center !important; }
+    .title-slide .chapter-num {
+      font-size: 0.6em;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #6366f1;
+      margin-bottom: 0.5em;
+    }
+    .title-slide h2 {
+      font-size: 1.8em;
+      color: #1e1b4b;
+      margin-bottom: 0.4em;
+    }
+    .title-slide .desc {
+      font-size: 0.7em;
+      color: #6b7280;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .title-slide .meta {
+      font-size: 0.6em;
+      color: #9ca3af;
+      margin-top: 1.5em;
+    }
+
+    /* Back button */
+    .back-btn {
+      position: fixed;
+      top: 14px;
+      left: 14px;
+      z-index: 1000;
+      background: #f5f3ff;
+      color: #4f46e5;
+      border: 1px solid #c7d2fe;
+      border-radius: 6px;
+      padding: 5px 12px;
+      font-size: 12px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .back-btn:hover { background: #ede9fe; }
+
+    /* Slide count badge */
+    .reveal .slide-number {
+      background: transparent;
+      color: #9ca3af;
+      font-size: 11px;
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="back-btn">← Chapter</a>
+
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- Title slide -->
+      <section class="title-slide">
+        <div class="chapter-num">Chapter 02 · Claude Code Tutorial</div>
+        <h2>Simulations & Code</h2>
+        <p class="desc">Writing, running, and debugging simulation code with CC.</p>
+        <p class="meta">45 min · 7 sections</p>
+      </section>
+
+      <!-- Content slides -->
+      
+      <section>
+        <h2>CC as Your Coding Partner</h2>
+        <ul>
+<li>Old workflow: write → run → copy error → paste into Claude.ai → fix → repeat</li>
+<li><strong>CC eliminates the copy-paste loop</strong> — it reads your files, runs code, and sees full tracebacks directly</li>
+<li>CC can try a fix and immediately re-run to confirm — all in one turn</li>
+<li>Your role shifts: from <strong>debugging syntax</strong> to <strong>evaluating whether the science is right</strong></li>
+<li>New workflow: describe the simulation → CC writes, runs, fixes → you review output</li>
+<li>⚡ Try: ask CC to read a script and describe what each function does — no copy-pasting required</li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>Writing New Simulation Code</h2>
+        <ul>
+<li>Don't describe <strong>implementation</strong> — describe the <strong>science</strong></li>
+<li>Think: "what would I tell a new PhD student who knows Python but not my subfield?"</li>
+<li>A good prompt covers: the <strong>process</strong>, the <strong>parameters</strong> (with ranges), the <strong>expected output</strong>, and asks CC to run it</li>
+<li>Example: "Simulate 1000 random walks of 100 steps. Plot a histogram of final positions. Run it."</li>
+<li>Vague science prompt beats precise numpy prompt — CC chooses the right implementation</li>
+<li>💡 "Simulate 10,000 random walks and plot the distribution" &gt; "initialize a 2D array and use cumsum"</li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>Example: Generating the Dataset</h2>
+        <ul>
+<li><strong>Prompt used:</strong> "Write <code>simulate_data.py</code> that generates 50 people × 180 days of synthetic step/weather data. Columns: date, person_id, steps, temp_c, precipitation_mm. Steps should correlate negatively with rain. Save to <code>weather_exercise/data/daily_steps.csv</code>."</li>
+<li>CC writes the full script, runs it, and confirms the CSV exists — no copy-pasting</li>
+<li>Key generation logic — steps decrease on rainy days, with individual variation:</li>
+</ul>
+<pre><code class="language-python">rain = np.random.binomial(1, 0.3, n_days)
+steps = 8000 + 40 * temp_c - 1500 * rain
+steps += np.random.normal(0, 1200, n_days)  # person noise
+</code></pre>
+<ul>
+<li>CC automatically seeds <code>np.random</code> for <strong>reproducibility</strong> — ask if it doesn't</li>
+<li>After generation: "Read <code>daily_steps.csv</code> and show me summary statistics" — quick sanity check</li>
+<li>If the correlation looks wrong, say "rain days show fewer steps on average, but not by much — why?" and CC will diagnose</li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>The Debug Loop</h2>
+        <ul>
+<li>Skip manual error reading — ask CC to run the script directly</li>
+<li>CC sees <strong>full traceback + source code simultaneously</strong> — no context lost</li>
+<li>Most effective prompt: <code>"Run simulate.py. If it fails, fix the error and run it again. Keep going until it produces output."</code></li>
+<li>Works in one or two iterations for common errors (name errors, shape mismatches, missing imports)</li>
+<li>CC <strong>verifies its own fix</strong> by re-running — not just reasoning abstractly</li>
+<li>⚠️ Be specific about "working": "The mean should be near 0, std near 10" beats "make it not crash"</li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>Iterative Improvement</h2>
+        <ul>
+<li>CC <strong>retains full context</strong> from the session — no need to re-explain the simulation</li>
+<li><strong>Speed</strong>: "This takes 90 seconds. Profile it and make it 3× faster."</li>
+<li><strong>Progress</strong>: "Add a progress bar that updates every 1000 iterations."</li>
+<li><strong>Parameterization</strong>: "Replace hardcoded numbers with command-line arguments."</li>
+<li><strong>Refactoring</strong>: "Refactor into a class for multiple runs with different parameter sets."</li>
+<li><strong>Validation</strong>: "Add assertions that the output is statistically reasonable."</li>
+<li>Ask CC to show profile output before and after to verify speedups are real</li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>Running and Visualizing Results</h2>
+        <ul>
+<li>Ask CC to save results and generate plots in the <strong>same session</strong></li>
+<li>Example: "Save results to <code>results.csv</code> and save the plot as <code>distribution.png</code>."</li>
+<li>Ask CC to <strong>interpret the output</strong>: "Does this distribution look like what we'd expect from a random walk?"</li>
+<li>If CC's description doesn't match your expectation — something is wrong with code or mental model</li>
+<li>Visualization defaults: <strong>matplotlib</strong> (standard), <strong>seaborn</strong> (statistical), <strong>plotly</strong> (interactive)</li>
+<li>Practical pattern: <strong>run → save → describe</strong> turns a black-box script into shared reasoning</li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>Example: Running the Analysis</h2>
+        <ul>
+<li><strong>Prompt 1:</strong> "Write <code>analysis.py</code> that loads <code>daily_steps.csv</code>, makes a scatter plot of <code>temp_c</code> vs <code>steps</code>, saves it as <code>temp_vs_steps.png</code>."</li>
+<li><strong>Prompt 2:</strong> "Add a rain-day comparison: box plots of steps on rain vs non-rain days. Save as <code>rain_comparison.png</code>."</li>
+<li><strong>Prompt 3:</strong> "Add a simple OLS regression of steps on temp_c and a rain dummy. Print the summary table."</li>
+<li>Core regression block CC produces:</li>
+</ul>
+<pre><code class="language-python">X = sm.add_constant(df[[&quot;temp_c&quot;, &quot;rain&quot;]])
+model = sm.OLS(df[&quot;steps&quot;], X).fit()
+print(model.summary())
+</code></pre>
+<ul>
+<li>Ask CC to <strong>interpret the output</strong>: "The rain coefficient is −1 423. Is that a meaningful effect given average step counts?"</li>
+<li>If a plot looks off, paste the description — CC diagnoses without needing you to re-upload the image</li>
+</ul>
+      </section>
+      
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      progress: true,
+      transition: 'slide',
+      transitionSpeed: 'fast',
+      center: false,
+      plugins: [RevealHighlight, RevealNotes],
+    });
+  </script>
+</body>
+</html>

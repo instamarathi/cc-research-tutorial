@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Writing a Paper Section — Slides</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --r-background-color: #ffffff;
+      --r-main-font: 'Inter', system-ui, sans-serif;
+      --r-heading-font: 'Inter', system-ui, sans-serif;
+      --r-heading-color: #312e81;
+      --r-heading-font-weight: 700;
+      --r-link-color: #6366f1;
+      --r-link-color-hover: #4338ca;
+      --r-selection-background-color: #c7d2fe;
+      --r-main-font-size: 28px;
+      --r-code-font: 'JetBrains Mono', monospace;
+    }
+
+    .reveal .slides section {
+      text-align: left;
+      overflow-y: auto;
+      max-height: 85vh;
+      padding: 0 0.5em;
+    }
+
+    .reveal h1, .reveal h2 {
+      text-transform: none;
+      letter-spacing: -0.02em;
+    }
+
+    .reveal h2 { font-size: 1.5em; margin-bottom: 0.6em; }
+    .reveal h3 { font-size: 1.15em; color: #4f46e5; margin: 0.8em 0 0.3em; }
+
+    .reveal p { line-height: 1.6; margin-bottom: 0.6em; font-size: 0.8em; }
+    .reveal li  { font-size: 0.78em; line-height: 1.55; }
+    .reveal ul, .reveal ol { margin-left: 1.2em; }
+
+    .reveal pre {
+      font-size: 0.6em;
+      border-radius: 6px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+      margin: 0.6em 0;
+    }
+
+    .reveal code:not(pre code) {
+      background: #eef2ff;
+      color: #4338ca;
+      padding: 0.1em 0.35em;
+      border-radius: 3px;
+      font-size: 0.82em;
+    }
+
+    .reveal blockquote {
+      border-left: 3px solid #6366f1;
+      background: #f5f3ff;
+      color: #3730a3;
+      padding: 0.5em 1em;
+      border-radius: 0 6px 6px 0;
+      font-style: normal;
+      font-size: 0.78em;
+      width: 95%;
+    }
+
+    .reveal table {
+      font-size: 0.7em;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    .reveal table th {
+      background: #eef2ff;
+      color: #312e81;
+      padding: 0.4em 0.8em;
+    }
+    .reveal table td { padding: 0.35em 0.8em; border-bottom: 1px solid #e5e7eb; }
+
+    /* Callout styles */
+    .reveal .callout {
+      border-radius: 6px;
+      padding: 0.6em 1em;
+      margin: 0.6em 0;
+      font-size: 0.72em;
+    }
+    .reveal .callout-tip  { background: #fefce8; border-left: 3px solid #eab308; }
+    .reveal .callout-try  { background: #eff6ff; border-left: 3px solid #3b82f6; }
+    .reveal .callout-warn { background: #fff7ed; border-left: 3px solid #f97316; }
+    .reveal .callout-note { background: #f0fdf4; border-left: 3px solid #22c55e; }
+    .reveal .callout-label {
+      font-weight: 700;
+      font-size: 0.85em;
+      display: block;
+      margin-bottom: 0.3em;
+    }
+    .reveal .callout p { margin: 0; font-size: 1em; }
+
+    /* Title slide */
+    .title-slide { text-align: center !important; }
+    .title-slide .chapter-num {
+      font-size: 0.6em;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #6366f1;
+      margin-bottom: 0.5em;
+    }
+    .title-slide h2 {
+      font-size: 1.8em;
+      color: #1e1b4b;
+      margin-bottom: 0.4em;
+    }
+    .title-slide .desc {
+      font-size: 0.7em;
+      color: #6b7280;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .title-slide .meta {
+      font-size: 0.6em;
+      color: #9ca3af;
+      margin-top: 1.5em;
+    }
+
+    /* Back button */
+    .back-btn {
+      position: fixed;
+      top: 14px;
+      left: 14px;
+      z-index: 1000;
+      background: #f5f3ff;
+      color: #4f46e5;
+      border: 1px solid #c7d2fe;
+      border-radius: 6px;
+      padding: 5px 12px;
+      font-size: 12px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .back-btn:hover { background: #ede9fe; }
+
+    /* Slide count badge */
+    .reveal .slide-number {
+      background: transparent;
+      color: #9ca3af;
+      font-size: 11px;
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="back-btn">← Chapter</a>
+
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- Title slide -->
+      <section class="title-slide">
+        <div class="chapter-num">Chapter 04 · Claude Code Tutorial</div>
+        <h2>Writing a Paper Section</h2>
+        <p class="desc">Drafting, revising, maintaining flow and consistency.</p>
+        <p class="meta">45 min · 7 sections</p>
+      </section>
+
+      <!-- Content slides -->
+      
+      <section>
+        <h2>The Problem with Copy-Paste Writing</h2>
+        <ul>
+<li><strong>Stateless chat</strong> knows nothing about your prior paragraphs, field terminology, or argument</li>
+<li>Generated prose is <strong>locally fluent but globally incoherent</strong> — sounds like your paper, doesn't belong in it</li>
+<li>You spend more time editing AI output than writing from scratch</li>
+<li><strong>Claude Code holds your entire manuscript in context</strong> across the whole session</li>
+<li>Reads, tracks, and stays consistent — not a paragraph dispenser</li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>Giving CC the Full Paper Context</h2>
+        <ul>
+<li><strong>Load the manuscript before writing a single word</strong></li>
+<li>Opening prompt: ask CC to read the file, then restate the central argument in one sentence</li>
+<li>If the summary is off, <strong>correct CC's understanding before drafting begins</strong></li>
+<li>Once context is set, subsequent prompts ("draft next subsection") resolve against the full manuscript</li>
+<li>For long projects, keep a <strong><code>context.md</code></strong> with: research question, contribution, terminology conventions, per-section goals</li>
+<li>Open every session: ask CC to read both <code>paper.md</code> and <code>context.md</code></li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>Example: Loading the Project</h2>
+        <ul>
+<li><strong>Opening prompt</strong> loads all three project artifacts at once:
+  <code>Read weather_exercise/data/daily_steps.csv, analysis.py, and blog_outline.md</code></li>
+<li>Ask CC to summarize the central claim in one sentence — <strong>verify before drafting</strong></li>
+<li>Sample confirmation prompt: <code>"The blog argues that rainy days cause a ~28% step reduction. Does your reading of analysis.py support that?"</code></li>
+<li>If analysis outputs differ from the outline, <strong>resolve the discrepancy before writing prose</strong></li>
+<li>Keep a <code>context.md</code> noting: metric = daily steps, n = 50 participants × 180 days, tone = accessible science blog, target reader = general fitness audience</li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>The Drafting Workflow</h2>
+        <ul>
+<li><strong>Step 1 — Frame the section's job</strong> before asking for prose (e.g., "justify sample size, describe instrument, explain pipeline")</li>
+<li><strong>Step 2 — Draft one subsection at a time</strong>; read it before requesting the next</li>
+<li><strong>Step 3 — Revise through conversation</strong> with specific feedback ("transition is too abrupt — add a bridging sentence")</li>
+<li><strong>Step 4 — Check consistency</strong> after completing a section ("does terminology here match the Introduction?")</li>
+<li>Vague requests get vague revisions — <strong>be specific</strong></li>
+<li>⚡ Diagnose first: ask CC "which section is weakest and why?" to find where to start revising</li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>Example: Drafting the Results Section</h2>
+        <ul>
+<li><strong>Prompt:</strong> <code>"Draft the Results section. Cover: rainy-day step average, % drop vs dry days, p-value, temperature effect size. Tone: accessible but precise. Max 3 short paragraphs."</code></li>
+<li>CC produces a grounded excerpt anchored in the actual numbers:
+  <code>On rainy days, participants averaged 6,240 steps — 28% fewer than on dry days
+  (p &lt; 0.001). Temperature had a smaller but significant effect: each 10 °F drop
+  below 60 °F was associated with ~400 fewer steps (p = 0.03).</code></li>
+<li><strong>Review immediately:</strong> check that percentages and p-values match <code>analysis.py</code> output before proceeding</li>
+<li>If the tone drifts academic, prompt: <code>"Rewrite keeping the numbers exact but aimed at a reader who has never seen a p-value"</code></li>
+<li>Draft the next subsection only after the previous one is locked — <strong>one subsection at a time</strong></li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>Maintaining Consistency</h2>
+        <ul>
+<li>Terminology <strong>drifts across sessions</strong>: "participants" → "subjects" → "respondents"</li>
+<li>Tense shifts, and promised contributions diverge between Introduction and Conclusion</li>
+<li>These errors are cognitively expensive for humans to catch — <strong>trivial for CC</strong></li>
+<li>Ask CC to: <strong>flag concept name drift</strong>, check tense consistency, quote matching claims from Introduction and Conclusion</li>
+<li>💡 Run a <strong>full consistency audit before every submission</strong>, not just at end of drafting</li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>Revision Workflow</h2>
+        <ul>
+<li>Peer review comments are <strong>structured, specific writing problems</strong> — use them as prompts</li>
+<li>Prompt structure: paste exact reviewer quote → ask for <strong>three revision approaches</strong> with tradeoffs</li>
+<li>Three options prevents anchoring; you get minimal fix, substantive revision, structural rethinking</li>
+<li>Follow up with a <strong>before/after comparison</strong> to verify the fix doesn't introduce new problems</li>
+<li>For unclear comments, ask CC to <strong>interpret the reviewer's likely meaning</strong> before attempting a revision</li>
+</ul>
+      </section>
+      
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      progress: true,
+      transition: 'slide',
+      transitionSpeed: 'fast',
+      center: false,
+      plugins: [RevealHighlight, RevealNotes],
+    });
+  </script>
+</body>
+</html>

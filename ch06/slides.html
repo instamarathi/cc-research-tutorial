@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post-Writing Polish — Slides</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --r-background-color: #ffffff;
+      --r-main-font: 'Inter', system-ui, sans-serif;
+      --r-heading-font: 'Inter', system-ui, sans-serif;
+      --r-heading-color: #312e81;
+      --r-heading-font-weight: 700;
+      --r-link-color: #6366f1;
+      --r-link-color-hover: #4338ca;
+      --r-selection-background-color: #c7d2fe;
+      --r-main-font-size: 28px;
+      --r-code-font: 'JetBrains Mono', monospace;
+    }
+
+    .reveal .slides section {
+      text-align: left;
+      overflow-y: auto;
+      max-height: 85vh;
+      padding: 0 0.5em;
+    }
+
+    .reveal h1, .reveal h2 {
+      text-transform: none;
+      letter-spacing: -0.02em;
+    }
+
+    .reveal h2 { font-size: 1.5em; margin-bottom: 0.6em; }
+    .reveal h3 { font-size: 1.15em; color: #4f46e5; margin: 0.8em 0 0.3em; }
+
+    .reveal p { line-height: 1.6; margin-bottom: 0.6em; font-size: 0.8em; }
+    .reveal li  { font-size: 0.78em; line-height: 1.55; }
+    .reveal ul, .reveal ol { margin-left: 1.2em; }
+
+    .reveal pre {
+      font-size: 0.6em;
+      border-radius: 6px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+      margin: 0.6em 0;
+    }
+
+    .reveal code:not(pre code) {
+      background: #eef2ff;
+      color: #4338ca;
+      padding: 0.1em 0.35em;
+      border-radius: 3px;
+      font-size: 0.82em;
+    }
+
+    .reveal blockquote {
+      border-left: 3px solid #6366f1;
+      background: #f5f3ff;
+      color: #3730a3;
+      padding: 0.5em 1em;
+      border-radius: 0 6px 6px 0;
+      font-style: normal;
+      font-size: 0.78em;
+      width: 95%;
+    }
+
+    .reveal table {
+      font-size: 0.7em;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    .reveal table th {
+      background: #eef2ff;
+      color: #312e81;
+      padding: 0.4em 0.8em;
+    }
+    .reveal table td { padding: 0.35em 0.8em; border-bottom: 1px solid #e5e7eb; }
+
+    /* Callout styles */
+    .reveal .callout {
+      border-radius: 6px;
+      padding: 0.6em 1em;
+      margin: 0.6em 0;
+      font-size: 0.72em;
+    }
+    .reveal .callout-tip  { background: #fefce8; border-left: 3px solid #eab308; }
+    .reveal .callout-try  { background: #eff6ff; border-left: 3px solid #3b82f6; }
+    .reveal .callout-warn { background: #fff7ed; border-left: 3px solid #f97316; }
+    .reveal .callout-note { background: #f0fdf4; border-left: 3px solid #22c55e; }
+    .reveal .callout-label {
+      font-weight: 700;
+      font-size: 0.85em;
+      display: block;
+      margin-bottom: 0.3em;
+    }
+    .reveal .callout p { margin: 0; font-size: 1em; }
+
+    /* Title slide */
+    .title-slide { text-align: center !important; }
+    .title-slide .chapter-num {
+      font-size: 0.6em;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #6366f1;
+      margin-bottom: 0.5em;
+    }
+    .title-slide h2 {
+      font-size: 1.8em;
+      color: #1e1b4b;
+      margin-bottom: 0.4em;
+    }
+    .title-slide .desc {
+      font-size: 0.7em;
+      color: #6b7280;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .title-slide .meta {
+      font-size: 0.6em;
+      color: #9ca3af;
+      margin-top: 1.5em;
+    }
+
+    /* Back button */
+    .back-btn {
+      position: fixed;
+      top: 14px;
+      left: 14px;
+      z-index: 1000;
+      background: #f5f3ff;
+      color: #4f46e5;
+      border: 1px solid #c7d2fe;
+      border-radius: 6px;
+      padding: 5px 12px;
+      font-size: 12px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .back-btn:hover { background: #ede9fe; }
+
+    /* Slide count badge */
+    .reveal .slide-number {
+      background: transparent;
+      color: #9ca3af;
+      font-size: 11px;
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="back-btn">← Chapter</a>
+
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- Title slide -->
+      <section class="title-slide">
+        <div class="chapter-num">Chapter 06 · Claude Code Tutorial</div>
+        <h2>Post-Writing Polish</h2>
+        <p class="desc">Remove AI markers, vary sentence structure, inject scholarly voice.</p>
+        <p class="meta">30 min · 5 sections</p>
+      </section>
+
+      <!-- Content slides -->
+      
+      <section>
+        <h2>How to Spot AI-Generated Prose</h2>
+        <ul>
+<li><strong>Too consistent</strong> — human writers are uneven; AI prose is smooth from first word to last</li>
+<li><strong>Hollow transitions</strong> — "It is worth noting that…", "Furthermore,", "This highlights the importance of…" add structure without content</li>
+<li><strong>Uniform paragraph structure</strong> — topic sentence + three equal sentences + clincher, repeated</li>
+<li><strong>Passive overuse</strong> — "It was found that…", "It can be seen that…" erases the agent from every sentence</li>
+<li><strong>Hedging without specificity</strong> — "Many researchers have noted…" names no one and cites nothing</li>
+<li><strong>Overlong sentences</strong> — 40+ word clauses that force readers to hold too much in working memory</li>
+<li><strong>List addiction</strong> — bullets replacing analysis, hiding the connections between ideas</li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>The Polish Workflow</h2>
+        <ul>
+<li><strong>Four passes, one job each</strong> — do not combine them</li>
+<li><strong>Pass 1 — Remove hollow transitions:</strong> "Rewrite removing all hollow filler transitions. Cut or replace dead phrases with actual content."</li>
+<li><strong>Pass 2 — Vary sentence structure:</strong> "Vary sentence length deliberately: some under 10 words, some over 25."</li>
+<li><strong>Pass 3 — Apply your style guide:</strong> prompt CC to apply <code>style-guide.md</code>; flag uncertain conventions</li>
+<li><strong>Pass 4 — Human final read:</strong> read aloud — your ear catches what your eye misses</li>
+<li>💡 The read-aloud test beats all AI checks — stumbles flag sentences that are too long, too abrupt, or unnatural</li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>Example: Polishing the Weather Blog</h2>
+        <ul>
+<li><strong>Before (AI-sounding):</strong> "It is worth noting that precipitation levels demonstrate a significant correlation with reduced ambulatory activity across the study cohort."</li>
+<li><strong>After (human voice):</strong> "Rain hit harder than cold. On wet days, people took 28% fewer steps — regardless of temperature."</li>
+<li><strong>Change 1 — Cut the hollow opener:</strong> "It is worth noting that" deleted; the actual finding leads the sentence</li>
+<li><strong>Change 2 — Replace latinate nouns:</strong> "precipitation levels" → "rain"; "ambulatory activity" → "steps"; "study cohort" → dropped entirely</li>
+<li><strong>Change 3 — Vary sentence length:</strong> one punchy 5-word sentence followed by one 11-word sentence with an em-dash pause</li>
+<li><strong>Change 4 — Make the agent concrete:</strong> passive "demonstrate a significant correlation" → active "people took 28% fewer steps"</li>
+<li><strong>Change 5 — Lead with the surprise:</strong> temperature buried at the end signals it matters less — that's the real insight</li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>The Banned Phrases List</h2>
+        <ul>
+<li>Maintain <strong><code>banned-phrases.md</code></strong> in your project root — add phrases as you notice them</li>
+<li>Starter entries: <code>It is worth noting that</code>, <code>Delve into</code>, <code>As previously mentioned</code>, <code>In conclusion,</code></li>
+<li>Prompt: "Read banned-phrases.md. Remove every instance. Where load-bearing, rewrite directly. Where empty, delete."</li>
+<li><strong>Do not remove mechanically</strong> — check each deletion; bring real substance forward</li>
+<li>"It is worth noting that replication rates have declined" → "Replication rates fell from 85% (2000) to 39% (2020)"</li>
+<li>⚠️ Every hollow opener hides something — either a real point stated badly, or nothing at all</li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>Polish Works on Your Writing Too</h2>
+        <ul>
+<li>The four-pass workflow improves <strong>any</strong> academic prose, not just CC-generated text</li>
+<li>Hollow transitions appear in human writing too — openers are easy shortcuts when writing is hard</li>
+<li>AI markers in your own prose often signal <strong>underspecified thinking</strong>, not just stylistic habit</li>
+<li>Removing "it is important to note that" forces you to <strong>commit to the actual claim</strong></li>
+<li>⚡ Paste a paragraph from your own writing and ask CC: "List every AI writing marker in this paragraph." The results will surprise you.</li>
+</ul>
+      </section>
+      
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      progress: true,
+      transition: 'slide',
+      transitionSpeed: 'fast',
+      center: false,
+      plugins: [RevealHighlight, RevealNotes],
+    });
+  </script>
+</body>
+</html>

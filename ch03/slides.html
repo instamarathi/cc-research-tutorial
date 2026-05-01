@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Developing Theory — Slides</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --r-background-color: #ffffff;
+      --r-main-font: 'Inter', system-ui, sans-serif;
+      --r-heading-font: 'Inter', system-ui, sans-serif;
+      --r-heading-color: #312e81;
+      --r-heading-font-weight: 700;
+      --r-link-color: #6366f1;
+      --r-link-color-hover: #4338ca;
+      --r-selection-background-color: #c7d2fe;
+      --r-main-font-size: 28px;
+      --r-code-font: 'JetBrains Mono', monospace;
+    }
+
+    .reveal .slides section {
+      text-align: left;
+      overflow-y: auto;
+      max-height: 85vh;
+      padding: 0 0.5em;
+    }
+
+    .reveal h1, .reveal h2 {
+      text-transform: none;
+      letter-spacing: -0.02em;
+    }
+
+    .reveal h2 { font-size: 1.5em; margin-bottom: 0.6em; }
+    .reveal h3 { font-size: 1.15em; color: #4f46e5; margin: 0.8em 0 0.3em; }
+
+    .reveal p { line-height: 1.6; margin-bottom: 0.6em; font-size: 0.8em; }
+    .reveal li  { font-size: 0.78em; line-height: 1.55; }
+    .reveal ul, .reveal ol { margin-left: 1.2em; }
+
+    .reveal pre {
+      font-size: 0.6em;
+      border-radius: 6px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+      margin: 0.6em 0;
+    }
+
+    .reveal code:not(pre code) {
+      background: #eef2ff;
+      color: #4338ca;
+      padding: 0.1em 0.35em;
+      border-radius: 3px;
+      font-size: 0.82em;
+    }
+
+    .reveal blockquote {
+      border-left: 3px solid #6366f1;
+      background: #f5f3ff;
+      color: #3730a3;
+      padding: 0.5em 1em;
+      border-radius: 0 6px 6px 0;
+      font-style: normal;
+      font-size: 0.78em;
+      width: 95%;
+    }
+
+    .reveal table {
+      font-size: 0.7em;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    .reveal table th {
+      background: #eef2ff;
+      color: #312e81;
+      padding: 0.4em 0.8em;
+    }
+    .reveal table td { padding: 0.35em 0.8em; border-bottom: 1px solid #e5e7eb; }
+
+    /* Callout styles */
+    .reveal .callout {
+      border-radius: 6px;
+      padding: 0.6em 1em;
+      margin: 0.6em 0;
+      font-size: 0.72em;
+    }
+    .reveal .callout-tip  { background: #fefce8; border-left: 3px solid #eab308; }
+    .reveal .callout-try  { background: #eff6ff; border-left: 3px solid #3b82f6; }
+    .reveal .callout-warn { background: #fff7ed; border-left: 3px solid #f97316; }
+    .reveal .callout-note { background: #f0fdf4; border-left: 3px solid #22c55e; }
+    .reveal .callout-label {
+      font-weight: 700;
+      font-size: 0.85em;
+      display: block;
+      margin-bottom: 0.3em;
+    }
+    .reveal .callout p { margin: 0; font-size: 1em; }
+
+    /* Title slide */
+    .title-slide { text-align: center !important; }
+    .title-slide .chapter-num {
+      font-size: 0.6em;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #6366f1;
+      margin-bottom: 0.5em;
+    }
+    .title-slide h2 {
+      font-size: 1.8em;
+      color: #1e1b4b;
+      margin-bottom: 0.4em;
+    }
+    .title-slide .desc {
+      font-size: 0.7em;
+      color: #6b7280;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .title-slide .meta {
+      font-size: 0.6em;
+      color: #9ca3af;
+      margin-top: 1.5em;
+    }
+
+    /* Back button */
+    .back-btn {
+      position: fixed;
+      top: 14px;
+      left: 14px;
+      z-index: 1000;
+      background: #f5f3ff;
+      color: #4f46e5;
+      border: 1px solid #c7d2fe;
+      border-radius: 6px;
+      padding: 5px 12px;
+      font-size: 12px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .back-btn:hover { background: #ede9fe; }
+
+    /* Slide count badge */
+    .reveal .slide-number {
+      background: transparent;
+      color: #9ca3af;
+      font-size: 11px;
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="back-btn">← Chapter</a>
+
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- Title slide -->
+      <section class="title-slide">
+        <div class="chapter-num">Chapter 03 · Claude Code Tutorial</div>
+        <h2>Developing Theory</h2>
+        <p class="desc">Formalizing ideas, pressure-testing logic, generating LaTeX.</p>
+        <p class="meta">30 min · 7 sections</p>
+      </section>
+
+      <!-- Content slides -->
+      
+      <section>
+        <h2>CC as a Thinking Partner</h2>
+        <ul>
+<li>CC is useful beyond code — valuable for <strong>pre-code, abstract theory work</strong></li>
+<li>Think of CC as a <strong>peer reviewer who has read everything but knows nothing about your specific problem</strong></li>
+<li>Unlike search engines, CC <strong>reasons</strong> — it doesn't just retrieve</li>
+<li>CC can take novel idea combinations and help you work out whether they hold together</li>
+<li>The output here isn't a script — it's a <strong>sharper version of your thinking</strong></li>
+<li>Treat the conversation itself as the product</li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>From Verbal Intuition to Formal Statement</h2>
+        <ul>
+<li>Good theory starts fuzzy: "I think X happens because of Y, but only when Z"</li>
+<li><strong>Step 1</strong>: State the raw intuition — 2–4 sentences, plain language</li>
+<li><strong>Step 2</strong>: Ask CC to formalize — "Turn this into a precise, testable hypothesis. Identify key variables."</li>
+<li><strong>Step 3</strong>: Request formal notation — "Express this as a LaTeX equation."</li>
+<li><strong>Step 4</strong>: Derive predictions — "What would we observe if this is true? What would falsify it?"</li>
+<li>Each step forces precision — often reveals <strong>one idea is actually two</strong>, or a critical condition is implicit</li>
+<li>⚡ Try: write your research idea in 2–3 sentences, ask CC to formalize and suggest how to test it</li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>Example: Formalizing the Hypothesis</h2>
+        <ul>
+<li><strong>Raw intuition given to CC:</strong> "People probably walk less on rainy or cold days — bad weather makes going outside unpleasant, so daily step counts should be lower."</li>
+<li><strong>Prompt:</strong> "Turn this into a precise, testable hypothesis. Identify the key variables and express it as a regression equation."</li>
+<li><strong>Formal equation CC returns:</strong> <code>steps_i = β₀ + β₁·temp_c + β₂·rain + ε_i</code></li>
+<li><strong>Key variables identified:</strong> outcome = <code>steps</code> (continuous); predictors = <code>temp_c</code> (continuous, °C), <code>rain</code> (binary, ≥1 mm); unit of observation = person-day</li>
+<li><strong>Directional predictions:</strong> β₁ &gt; 0 (warmer → more steps), β₂ &lt; 0 (rain → fewer steps)</li>
+<li>Formalization revealed an implicit condition: the effect may vary <strong>within-person</strong> vs. <strong>across people</strong> — suggests adding a person fixed effect</li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>The Steelman Technique</h2>
+        <ul>
+<li>A <strong>steelman</strong> = strongest possible version of an argument (opposite of strawman)</li>
+<li>Apply to your own hypothesis to surface glossed-over assumptions</li>
+<li><strong>Prompt 1 — Steelman</strong>: "Give me the most rigorous, defensible version of this argument. Fill in implicit assumptions."</li>
+<li><strong>Prompt 2 — Attack</strong>: "What are the three strongest counterarguments a skeptical reader would raise?"</li>
+<li><strong>Prompt 3 — Design</strong>: "For each counterargument, how would I design a study to rule it out?"</li>
+<li>Result: a <strong>vulnerability map</strong> — you know which claims are load-bearing and which objections to address proactively</li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>Example: Steelmanning the Weather Claim</h2>
+        <ul>
+<li><strong>Prompt used:</strong> "What are the three strongest counterarguments a skeptical reviewer would raise against the claim that rain reduces daily step counts?"</li>
+<li><strong>Counterargument 1 — Seasonal confounding:</strong> Rain is more common in winter; cold temperatures (not rain itself) may drive reduced activity, making the rain coefficient spurious without proper temperature controls</li>
+<li><strong>Counterargument 2 — Selection bias:</strong> People who exercise outdoors drop off on rainy days, but gym-goers may compensate — step counts from wearables <strong>undersample</strong> gym exercise and overstate the effect</li>
+<li><strong>Counterargument 3 — Reverse causality / mood loop:</strong> Low activity days may make people <em>perceive</em> weather as worse, inflating self-reported rain associations in diary-based data</li>
+<li><strong>Follow-up prompt:</strong> "For each counterargument, what study design or control variable would rule it out?" — produces a concrete <strong>robustness checklist</strong></li>
+<li>Result: the blog post "Why You Skip the Gym When It Rains" must acknowledge seasonal controls and gym-substitution before reviewers do</li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>Generating LaTeX</h2>
+        <ul>
+<li>CC produces <strong>publication-ready LaTeX</strong>: equations, aligned derivations, theorem-proof blocks, tables</li>
+<li>Useful prompts:
+  <code>"Write this as a LaTeX theorem environment with a proof sketch."
+  "Format this as a LaTeX align environment."
+  "Create a tabular for an APA-style journal with these columns."</code></li>
+<li>Ask CC for the required <code>\usepackage</code> statements — saves hunting them down</li>
+<li>CC typically produces <strong>complete, compilable blocks</strong></li>
+<li>📝 Always run <code>pdflatex</code> to verify before including in a manuscript — minor syntax errors do occur</li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>Structuring an Argument</h2>
+        <ul>
+<li>A theoretical contribution is only as strong as its <strong>logical scaffolding</strong></li>
+<li><strong>Map the chain</strong>: "Break down the logical chain from premises to conclusion. Make each inferential step explicit."</li>
+<li>Reveals steps doing <strong>too much work</strong>, skipped steps, or unstated assumptions between adjacent steps</li>
+<li><strong>Find the weakest link</strong>: "Which step relies most on unestablished empirical assumptions? What would a reviewer contest?"</li>
+<li>Ask for <strong>field-relevant touchstones</strong>: "Are there canonical results in [field] that bear on this argument?"</li>
+<li>⚠️ CC can <strong>confabulate citations</strong> — plausible-looking but nonexistent. Never trust without verifying in Google Scholar or Semantic Scholar</li>
+</ul>
+      </section>
+      
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      progress: true,
+      transition: 'slide',
+      transitionSpeed: 'fast',
+      center: false,
+      plugins: [RevealHighlight, RevealNotes],
+    });
+  </script>
+</body>
+</html>

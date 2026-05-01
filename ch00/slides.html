@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome & The Superpower — Slides</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --r-background-color: #ffffff;
+      --r-main-font: 'Inter', system-ui, sans-serif;
+      --r-heading-font: 'Inter', system-ui, sans-serif;
+      --r-heading-color: #312e81;
+      --r-heading-font-weight: 700;
+      --r-link-color: #6366f1;
+      --r-link-color-hover: #4338ca;
+      --r-selection-background-color: #c7d2fe;
+      --r-main-font-size: 28px;
+      --r-code-font: 'JetBrains Mono', monospace;
+    }
+
+    .reveal .slides section {
+      text-align: left;
+      overflow-y: auto;
+      max-height: 85vh;
+      padding: 0 0.5em;
+    }
+
+    .reveal h1, .reveal h2 {
+      text-transform: none;
+      letter-spacing: -0.02em;
+    }
+
+    .reveal h2 { font-size: 1.5em; margin-bottom: 0.6em; }
+    .reveal h3 { font-size: 1.15em; color: #4f46e5; margin: 0.8em 0 0.3em; }
+
+    .reveal p { line-height: 1.6; margin-bottom: 0.6em; font-size: 0.8em; }
+    .reveal li  { font-size: 0.78em; line-height: 1.55; }
+    .reveal ul, .reveal ol { margin-left: 1.2em; }
+
+    .reveal pre {
+      font-size: 0.6em;
+      border-radius: 6px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+      margin: 0.6em 0;
+    }
+
+    .reveal code:not(pre code) {
+      background: #eef2ff;
+      color: #4338ca;
+      padding: 0.1em 0.35em;
+      border-radius: 3px;
+      font-size: 0.82em;
+    }
+
+    .reveal blockquote {
+      border-left: 3px solid #6366f1;
+      background: #f5f3ff;
+      color: #3730a3;
+      padding: 0.5em 1em;
+      border-radius: 0 6px 6px 0;
+      font-style: normal;
+      font-size: 0.78em;
+      width: 95%;
+    }
+
+    .reveal table {
+      font-size: 0.7em;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    .reveal table th {
+      background: #eef2ff;
+      color: #312e81;
+      padding: 0.4em 0.8em;
+    }
+    .reveal table td { padding: 0.35em 0.8em; border-bottom: 1px solid #e5e7eb; }
+
+    /* Callout styles */
+    .reveal .callout {
+      border-radius: 6px;
+      padding: 0.6em 1em;
+      margin: 0.6em 0;
+      font-size: 0.72em;
+    }
+    .reveal .callout-tip  { background: #fefce8; border-left: 3px solid #eab308; }
+    .reveal .callout-try  { background: #eff6ff; border-left: 3px solid #3b82f6; }
+    .reveal .callout-warn { background: #fff7ed; border-left: 3px solid #f97316; }
+    .reveal .callout-note { background: #f0fdf4; border-left: 3px solid #22c55e; }
+    .reveal .callout-label {
+      font-weight: 700;
+      font-size: 0.85em;
+      display: block;
+      margin-bottom: 0.3em;
+    }
+    .reveal .callout p { margin: 0; font-size: 1em; }
+
+    /* Title slide */
+    .title-slide { text-align: center !important; }
+    .title-slide .chapter-num {
+      font-size: 0.6em;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #6366f1;
+      margin-bottom: 0.5em;
+    }
+    .title-slide h2 {
+      font-size: 1.8em;
+      color: #1e1b4b;
+      margin-bottom: 0.4em;
+    }
+    .title-slide .desc {
+      font-size: 0.7em;
+      color: #6b7280;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .title-slide .meta {
+      font-size: 0.6em;
+      color: #9ca3af;
+      margin-top: 1.5em;
+    }
+
+    /* Back button */
+    .back-btn {
+      position: fixed;
+      top: 14px;
+      left: 14px;
+      z-index: 1000;
+      background: #f5f3ff;
+      color: #4f46e5;
+      border: 1px solid #c7d2fe;
+      border-radius: 6px;
+      padding: 5px 12px;
+      font-size: 12px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .back-btn:hover { background: #ede9fe; }
+
+    /* Slide count badge */
+    .reveal .slide-number {
+      background: transparent;
+      color: #9ca3af;
+      font-size: 11px;
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="back-btn">← Chapter</a>
+
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- Title slide -->
+      <section class="title-slide">
+        <div class="chapter-num">Chapter 00 · Claude Code Tutorial</div>
+        <h2>Welcome & The Superpower</h2>
+        <p class="desc">Why CC ≠ copy-paste AI. Installation, first run, mental model shift.</p>
+        <p class="meta">20 min · 6 sections</p>
+      </section>
+
+      <!-- Content slides -->
+      
+      <section>
+        <h2>The Copy-Paste Trap</h2>
+        <ul>
+<li>Chat AI sees only what you <strong>paste</strong> — one file at a time, stripped of dependencies</li>
+<li>Every new session starts at <strong>absolute zero</strong> — close the tab and context is gone</li>
+<li>You carry errors back manually: run, crash, copy traceback, re-explain, repeat</li>
+<li>The AI has never seen your <strong>actual data</strong>, your file structure, or your imports</li>
+<li>Real projects span dozens of files — <strong>copy-paste AI is constitutionally blind</strong> to this</li>
+<li>You have been using a calculator when you needed a computer</li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>Example: The Weather Project</h2>
+        <ul>
+<li>You have a CSV of 50 people's daily steps, temperature, and rainfall — you want to know if bad weather kills exercise habits</li>
+<li><strong>The copy-paste approach:</strong> open a chat window, paste 20 rows, ask "is there a correlation?" — but the AI has no idea what the columns mean</li>
+<li>Every session: re-explain that <code>temp_c</code> is Celsius, <code>precipitation_mm</code> is daily rainfall, <code>steps</code> is the outcome — <strong>30 seconds of throat-clearing every time</strong></li>
+<li>You paste a subset to fit the context window — the AI draws conclusions from <strong>200 rows out of 9,000</strong></li>
+<li>You get an insight, close the tab, open a new one — and the AI has <strong>no memory of what it found last time</strong></li>
+<li>With CC: <code>claude</code> from inside <code>weather_exercise/</code>, point it at the CSV once — it reads all 9,000 rows and remembers the schema for the whole session</li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>What Claude Code Changes</h2>
+        <ul>
+<li>CC is a <strong>command-line agent</strong> — not a chat interface, lives inside your terminal and project</li>
+<li>Has <strong>tool use</strong>: reads files, writes files, runs shell commands, observes output</li>
+<li>Doesn't just generate text — it <strong>takes actions and responds to results</strong></li>
+<li>Like a collaborator at your screen: sees the same files, runs the code, reads the error</li>
+<li>Ask it to debug a 400-line script, run tests until they pass, or summarize three PDFs</li>
+<li>The <strong>friction that made AI feel like a novelty</strong> disappears</li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>Installation</h2>
+        <ul>
+<li>Prerequisite: <strong>Node.js</strong> installed (<code>node --version</code> to check; get LTS from nodejs.org)</li>
+</ul>
+<pre><code class="language-bash">npm install -g @anthropic-ai/claude-code
+claude
+</code></pre>
+<ul>
+<li>First launch prompts for your <strong>Anthropic API key</strong> — get one at console.anthropic.com</li>
+<li>Persist the key so you don't set it every session:</li>
+</ul>
+<pre><code class="language-bash">export ANTHROPIC_API_KEY=&quot;your-key-here&quot;  # add to ~/.zshrc or ~/.bashrc
+</code></pre>
+<ul>
+<li>💡 Run <code>source ~/.zshrc</code> after editing your profile to apply immediately</li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>Your First 5 Minutes</h2>
+        <ul>
+<li>Always launch from <strong>inside your project directory</strong> — that's CC's primary context</li>
+<li>Three things to do at the start of every session (takes 30 seconds):</li>
+<li><strong>Give context</strong> — one sentence about the project</li>
+<li><strong>State your goal</strong> — what you want to accomplish today</li>
+<li><strong>Describe constraints</strong> — Python version, no new deps, etc.</li>
+<li>⚡ Try it: run <code>claude</code>, then ask <em>"What files are in this directory and what might each be for?"</em> — no copy-paste required</li>
+<li>Example 3-part context setup for the weather project:</li>
+<li><strong>Project:</strong> "This is a dataset of daily steps, temperature, and rainfall for 50 people over 180 days."</li>
+<li><strong>Goal:</strong> "Today I want to find out whether precipitation days have significantly lower step counts."</li>
+<li><strong>Constraints:</strong> "Use only the standard library plus pandas and matplotlib — no new installs."</li>
+<li>Exit anytime with <strong>Ctrl+C</strong></li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>The Mental Model Shift</h2>
+        <ul>
+<li><strong>Before CC:</strong> AI generates code snippets you paste into your project</li>
+<li><strong>After CC:</strong> AI partner working <strong>inside your project</strong> with you</li>
+<li>Generation = one-shot transaction — ask, get, implement, AI forgets</li>
+<li>Collaboration = <strong>ongoing</strong> — AI sees what you see, runs experiments, adjusts on results</li>
+<li>Unit of work shifts from <strong>"a function"</strong> to <strong>"a task"</strong></li>
+<li>You are no longer limited by the size of your clipboard</li>
+</ul>
+      </section>
+      
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      progress: true,
+      transition: 'slide',
+      transitionSpeed: 'fast',
+      center: false,
+      plugins: [RevealHighlight, RevealNotes],
+    });
+  </script>
+</body>
+</html>

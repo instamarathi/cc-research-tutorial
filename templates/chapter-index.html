@@ -13,7 +13,19 @@
   <p class="text-gray-600 text-base">{{ chapter.desc }}</p>
 </div>
 
-<div class="grid grid-cols-2 gap-4 mt-10">
+<a href="slides.html"
+   class="group flex items-center gap-4 mt-10 mb-5 p-5 rounded-xl
+          border border-indigo-200 bg-indigo-50
+          hover:bg-indigo-100 hover:border-indigo-300 transition-all">
+  <span class="text-3xl">🎯</span>
+  <div class="flex-1">
+    <h2 class="font-semibold text-indigo-800 group-hover:text-indigo-900">Slides</h2>
+    <p class="text-xs text-indigo-600 mt-0.5">Launch interactive presentation for this chapter</p>
+  </div>
+  <span class="text-indigo-400 text-sm font-medium">Open →</span>
+</a>
+
+<div class="grid grid-cols-2 gap-4">
   {% for pt, icon, color in [
       ('lecture',   '📖', 'indigo'),
       ('tips',      '💡', 'yellow'),

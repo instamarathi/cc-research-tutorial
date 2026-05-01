@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Voice — Style Guide — Slides</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --r-background-color: #ffffff;
+      --r-main-font: 'Inter', system-ui, sans-serif;
+      --r-heading-font: 'Inter', system-ui, sans-serif;
+      --r-heading-color: #312e81;
+      --r-heading-font-weight: 700;
+      --r-link-color: #6366f1;
+      --r-link-color-hover: #4338ca;
+      --r-selection-background-color: #c7d2fe;
+      --r-main-font-size: 28px;
+      --r-code-font: 'JetBrains Mono', monospace;
+    }
+
+    .reveal .slides section {
+      text-align: left;
+      overflow-y: auto;
+      max-height: 85vh;
+      padding: 0 0.5em;
+    }
+
+    .reveal h1, .reveal h2 {
+      text-transform: none;
+      letter-spacing: -0.02em;
+    }
+
+    .reveal h2 { font-size: 1.5em; margin-bottom: 0.6em; }
+    .reveal h3 { font-size: 1.15em; color: #4f46e5; margin: 0.8em 0 0.3em; }
+
+    .reveal p { line-height: 1.6; margin-bottom: 0.6em; font-size: 0.8em; }
+    .reveal li  { font-size: 0.78em; line-height: 1.55; }
+    .reveal ul, .reveal ol { margin-left: 1.2em; }
+
+    .reveal pre {
+      font-size: 0.6em;
+      border-radius: 6px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+      margin: 0.6em 0;
+    }
+
+    .reveal code:not(pre code) {
+      background: #eef2ff;
+      color: #4338ca;
+      padding: 0.1em 0.35em;
+      border-radius: 3px;
+      font-size: 0.82em;
+    }
+
+    .reveal blockquote {
+      border-left: 3px solid #6366f1;
+      background: #f5f3ff;
+      color: #3730a3;
+      padding: 0.5em 1em;
+      border-radius: 0 6px 6px 0;
+      font-style: normal;
+      font-size: 0.78em;
+      width: 95%;
+    }
+
+    .reveal table {
+      font-size: 0.7em;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    .reveal table th {
+      background: #eef2ff;
+      color: #312e81;
+      padding: 0.4em 0.8em;
+    }
+    .reveal table td { padding: 0.35em 0.8em; border-bottom: 1px solid #e5e7eb; }
+
+    /* Callout styles */
+    .reveal .callout {
+      border-radius: 6px;
+      padding: 0.6em 1em;
+      margin: 0.6em 0;
+      font-size: 0.72em;
+    }
+    .reveal .callout-tip  { background: #fefce8; border-left: 3px solid #eab308; }
+    .reveal .callout-try  { background: #eff6ff; border-left: 3px solid #3b82f6; }
+    .reveal .callout-warn { background: #fff7ed; border-left: 3px solid #f97316; }
+    .reveal .callout-note { background: #f0fdf4; border-left: 3px solid #22c55e; }
+    .reveal .callout-label {
+      font-weight: 700;
+      font-size: 0.85em;
+      display: block;
+      margin-bottom: 0.3em;
+    }
+    .reveal .callout p { margin: 0; font-size: 1em; }
+
+    /* Title slide */
+    .title-slide { text-align: center !important; }
+    .title-slide .chapter-num {
+      font-size: 0.6em;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #6366f1;
+      margin-bottom: 0.5em;
+    }
+    .title-slide h2 {
+      font-size: 1.8em;
+      color: #1e1b4b;
+      margin-bottom: 0.4em;
+    }
+    .title-slide .desc {
+      font-size: 0.7em;
+      color: #6b7280;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .title-slide .meta {
+      font-size: 0.6em;
+      color: #9ca3af;
+      margin-top: 1.5em;
+    }
+
+    /* Back button */
+    .back-btn {
+      position: fixed;
+      top: 14px;
+      left: 14px;
+      z-index: 1000;
+      background: #f5f3ff;
+      color: #4f46e5;
+      border: 1px solid #c7d2fe;
+      border-radius: 6px;
+      padding: 5px 12px;
+      font-size: 12px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .back-btn:hover { background: #ede9fe; }
+
+    /* Slide count badge */
+    .reveal .slide-number {
+      background: transparent;
+      color: #9ca3af;
+      font-size: 11px;
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="back-btn">← Chapter</a>
+
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- Title slide -->
+      <section class="title-slide">
+        <div class="chapter-num">Chapter 05 · Claude Code Tutorial</div>
+        <h2>Your Voice — Style Guide</h2>
+        <p class="desc">Extract your writing style; use it for all future writing.</p>
+        <p class="meta">30 min · 6 sections</p>
+      </section>
+
+      <!-- Content slides -->
+      
+      <section>
+        <h2>Why AI Writing Sounds Generic</h2>
+        <ul>
+<li>LLMs are trained to produce <strong>statistically central prose</strong> — the average of millions of texts</li>
+<li>Output is grammatically clean, structurally correct, and <strong>completely forgettable</strong></li>
+<li>No rhythm, no personality, no characteristic way of building an argument</li>
+<li>Reviewers and supervisors <strong>feel it immediately</strong>, even if they can't name it</li>
+<li>Solution: don't avoid CC for writing — <strong>teach CC your voice</strong></li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>What Makes Your Voice Unique</h2>
+        <ul>
+<li>Your fingerprint lives in <strong>small decisions made dozens of times per paragraph</strong></li>
+<li>Sentence length variation, pivot words ("however" vs. "yet" vs. "but"), how you introduce evidence</li>
+<li><strong>Hedging patterns</strong>: "appears to" vs. "may" vs. "it is worth noting that"</li>
+<li>How you open and close paragraphs; the vocabulary you reach for</li>
+<li>These patterns are <strong>consistent and encoded in your own texts</strong> — CC can extract them</li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>The Style Guide Extraction Workflow</h2>
+        <ul>
+<li><strong>Step 1:</strong> Find 2–3 paragraphs you are proud of from your own unedited work</li>
+<li><strong>Step 2:</strong> Save them to <code>my-writing-samples.md</code></li>
+<li><strong>Step 3:</strong> Run the extraction prompt — ask CC to produce <code>style-guide.md</code> covering sentence length, connectives, evidence framing, hedging, paragraph structure, vocabulary</li>
+<li><strong>Step 4:</strong> Review carefully — CC gets broad strokes right, may miss finer texture; <strong>add and delete as needed</strong></li>
+<li><strong>Step 5:</strong> Save <code>style-guide.md</code> in your project directory (keep a copy in your home research folder)</li>
+<li><strong>Step 6:</strong> Start every writing session with <code>Read style-guide.md. Write in the style described there.</code></li>
+<li>⚡ Try now: paste 2 paragraphs and run the extraction — does CC's description match your self-perception?</li>
+<li>💡 More samples = better capture; 5–10 paragraphs from varied contexts (intro, methods, discussion) beats 2–3</li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>Example: Applying Voice to the Blog</h2>
+        <ul>
+<li>CC's <strong>generic draft</strong> (before style guide):
+  <code>"Rainy weather has been shown to negatively impact physical activity levels among study participants."</code></li>
+<li><strong>After</strong> loading <code>style-guide.md</code> and rewriting:
+  <code>"When it rains, people move less — 28% less, in fact. That's not a rounding error; that's a skipped workout."</code></li>
+<li>What changed: <strong>sentence length halved</strong>, hedging stripped ("has been shown" → stated directly), <strong>em-dash rhythm</strong> introduced, concrete number pulled forward</li>
+<li>The style guide told CC: short declarative sentences, lead with the finding, use plain verbs, avoid passive constructions</li>
+<li><strong>Prompt that produced the rewrite:</strong> <code>"Read style-guide.md. Rewrite the following sentence in my style, keeping all numbers exact: [paste draft sentence]"</code></li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>Using the Style Guide</h2>
+        <ul>
+<li>Invoke the style guide <strong>explicitly at the start of every writing task</strong></li>
+<li>Effective prompt: read style-guide + bullet-point content + task = prose in your style</li>
+<li>Key reuse prompts:</li>
+<li><strong>"Rewrite this paragraph in my style"</strong> — fixes generic-sounding drafts</li>
+<li><strong>"Score this paragraph 0–10 for adherence to my style"</strong> — reviews your own drafts</li>
+<li><strong>"Does this abstract sound like me?"</strong> — quick gut-check before submission</li>
+<li>The style guide is a <strong>living document</strong>: add praised passages, update when your writing evolves, revisit once a semester</li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>Why This Is Ethical</h2>
+        <ul>
+<li>The style guide is <strong>extracted from your own writing</strong> — every pattern came from sentences you composed</li>
+<li>Authorship question is not "did a human type this?" but <strong>"whose intellectual and stylistic choices shaped it?"</strong></li>
+<li>When you provide bullets, arguments, evidence, and style guide — <strong>those choices are yours; CC is the typist</strong></li>
+<li>Analogy: a research assistant who has read all your papers and writes in your voice is not replacing authorship — it is <strong>extending capacity</strong></li>
+<li>💡 CC writes in your voice, guided by your own examples — the resulting prose is genuinely yours</li>
+</ul>
+      </section>
+      
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      progress: true,
+      transition: 'slide',
+      transitionSpeed: 'fast',
+      center: false,
+      plugins: [RevealHighlight, RevealNotes],
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your First Research Session — Slides</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --r-background-color: #ffffff;
+      --r-main-font: 'Inter', system-ui, sans-serif;
+      --r-heading-font: 'Inter', system-ui, sans-serif;
+      --r-heading-color: #312e81;
+      --r-heading-font-weight: 700;
+      --r-link-color: #6366f1;
+      --r-link-color-hover: #4338ca;
+      --r-selection-background-color: #c7d2fe;
+      --r-main-font-size: 28px;
+      --r-code-font: 'JetBrains Mono', monospace;
+    }
+
+    .reveal .slides section {
+      text-align: left;
+      overflow-y: auto;
+      max-height: 85vh;
+      padding: 0 0.5em;
+    }
+
+    .reveal h1, .reveal h2 {
+      text-transform: none;
+      letter-spacing: -0.02em;
+    }
+
+    .reveal h2 { font-size: 1.5em; margin-bottom: 0.6em; }
+    .reveal h3 { font-size: 1.15em; color: #4f46e5; margin: 0.8em 0 0.3em; }
+
+    .reveal p { line-height: 1.6; margin-bottom: 0.6em; font-size: 0.8em; }
+    .reveal li  { font-size: 0.78em; line-height: 1.55; }
+    .reveal ul, .reveal ol { margin-left: 1.2em; }
+
+    .reveal pre {
+      font-size: 0.6em;
+      border-radius: 6px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+      margin: 0.6em 0;
+    }
+
+    .reveal code:not(pre code) {
+      background: #eef2ff;
+      color: #4338ca;
+      padding: 0.1em 0.35em;
+      border-radius: 3px;
+      font-size: 0.82em;
+    }
+
+    .reveal blockquote {
+      border-left: 3px solid #6366f1;
+      background: #f5f3ff;
+      color: #3730a3;
+      padding: 0.5em 1em;
+      border-radius: 0 6px 6px 0;
+      font-style: normal;
+      font-size: 0.78em;
+      width: 95%;
+    }
+
+    .reveal table {
+      font-size: 0.7em;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    .reveal table th {
+      background: #eef2ff;
+      color: #312e81;
+      padding: 0.4em 0.8em;
+    }
+    .reveal table td { padding: 0.35em 0.8em; border-bottom: 1px solid #e5e7eb; }
+
+    /* Callout styles */
+    .reveal .callout {
+      border-radius: 6px;
+      padding: 0.6em 1em;
+      margin: 0.6em 0;
+      font-size: 0.72em;
+    }
+    .reveal .callout-tip  { background: #fefce8; border-left: 3px solid #eab308; }
+    .reveal .callout-try  { background: #eff6ff; border-left: 3px solid #3b82f6; }
+    .reveal .callout-warn { background: #fff7ed; border-left: 3px solid #f97316; }
+    .reveal .callout-note { background: #f0fdf4; border-left: 3px solid #22c55e; }
+    .reveal .callout-label {
+      font-weight: 700;
+      font-size: 0.85em;
+      display: block;
+      margin-bottom: 0.3em;
+    }
+    .reveal .callout p { margin: 0; font-size: 1em; }
+
+    /* Title slide */
+    .title-slide { text-align: center !important; }
+    .title-slide .chapter-num {
+      font-size: 0.6em;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #6366f1;
+      margin-bottom: 0.5em;
+    }
+    .title-slide h2 {
+      font-size: 1.8em;
+      color: #1e1b4b;
+      margin-bottom: 0.4em;
+    }
+    .title-slide .desc {
+      font-size: 0.7em;
+      color: #6b7280;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .title-slide .meta {
+      font-size: 0.6em;
+      color: #9ca3af;
+      margin-top: 1.5em;
+    }
+
+    /* Back button */
+    .back-btn {
+      position: fixed;
+      top: 14px;
+      left: 14px;
+      z-index: 1000;
+      background: #f5f3ff;
+      color: #4f46e5;
+      border: 1px solid #c7d2fe;
+      border-radius: 6px;
+      padding: 5px 12px;
+      font-size: 12px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .back-btn:hover { background: #ede9fe; }
+
+    /* Slide count badge */
+    .reveal .slide-number {
+      background: transparent;
+      color: #9ca3af;
+      font-size: 11px;
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="back-btn">← Chapter</a>
+
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- Title slide -->
+      <section class="title-slide">
+        <div class="chapter-num">Chapter 01 · Claude Code Tutorial</div>
+        <h2>Your First Research Session</h2>
+        <p class="desc">File context, reading papers/data with CC, iterative dialogue.</p>
+        <p class="meta">30 min · 6 sections</p>
+      </section>
+
+      <!-- Content slides -->
+      
+      <section>
+        <h2>What "Context" Means for CC</h2>
+        <ul>
+<li>CC knows nothing at session start — you must <strong>point it to files</strong></li>
+<li>Reads plain text, CSV, Python scripts, Markdown, and most structured formats</li>
+<li>💡 CC cannot open PDFs directly — convert first: <code>pdftotext paper.pdf paper.txt</code></li>
+<li>Context window is ~<strong>200,000 tokens</strong> — large but finite; be selective</li>
+<li>Give CC files relevant to <strong>today's task</strong>, not your entire project folder</li>
+<li>Most useful types: CSV data, Python scripts, text notes, extracted paper text</li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>The Research Dialogue Pattern</h2>
+        <ul>
+<li>Mistake: treating CC like a search box — one big prompt, copy output, done</li>
+<li>Think of it as a <strong>research collaborator</strong>: start a conversation, not a transaction</li>
+<li>Five-step flow:</li>
+<li><strong>Orient</strong> — give files, ask for overview</li>
+<li><strong>Narrow</strong> — follow up on one thread</li>
+<li><strong>Generate</strong> — ask for a script, summary, or table</li>
+<li><strong>Challenge</strong> — push back on outputs that seem off</li>
+<li><strong>Capture</strong> — write anything worth keeping to a file</li>
+<li>⚡ Try: ask <em>"What are the three most important things I should know about this?"</em> — don't edit the prompt, see what CC notices</li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>Reading and Analyzing Data</h2>
+        <ul>
+<li>Start with <strong>structure before substance</strong> — ask for columns, types, and quality issues first:</li>
+</ul>
+<pre><code>Read data/responses.csv. Describe the columns, data types,
+and any obvious quality issues.
+</code></pre>
+<ul>
+<li>Follow-up questions that pay off fast:</li>
+<li>"Which variables have the <strong>most missing data</strong>?"</li>
+<li>"Are there any <strong>duplicate rows</strong>?"</li>
+<li>"What is the range and mean of <code>response_time</code>?"</li>
+<li>Ask CC to write and run an exploration script — raw CSV to distribution plot in under <strong>2 minutes</strong></li>
+<li>⚠️ Always <strong>verify quantitative claims</strong> yourself — CC can make numerical mistakes</li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>Example: Reading the Weather Data</h2>
+        <ul>
+<li>Open prompt — <strong>orient CC to the dataset:</strong></li>
+</ul>
+<pre><code>Read data/daily_steps.csv. Describe the columns, data types,
+and any quality issues you notice.
+</code></pre>
+<ul>
+<li>CC reports: 9,000 rows, 5 columns, no nulls, <code>date</code> parsed as string — flags that <code>date</code> should be converted to datetime</li>
+<li>CC spots without being asked: <strong>"Steps drop roughly 30% on days where precipitation_mm &gt; 0"</strong> and <strong>"a sharp step-count decline below 5°C"</strong></li>
+<li>Follow-up to narrow in: <em>"Is the rain effect consistent across all 50 people, or driven by a few outliers?"</em></li>
+<li>CC finds 8 people show almost no rain effect — prompts the natural next question: <em>"What separates those 8 from the rest?"</em></li>
+<li>Ask CC to <strong>write and run</strong> an exploration script: <code>"Write a script that plots mean daily steps by 5°C temperature bucket and save it to figures/steps_by_temp.png"</code></li>
+<li>⚡ This entire dialogue — from raw CSV to a hypothesis worth writing about — takes under <strong>10 minutes</strong></li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>Iterative Questioning</h2>
+        <ul>
+<li>The power of CC is in the <strong>follow-ups</strong>, not the first prompt</li>
+<li>High-value follow-up patterns:</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>What to ask</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Interesting finding</td>
+<td>"Show me the <strong>distribution</strong> of that variable."</td>
+</tr>
+<tr>
+<td>Number seems off</td>
+<td>"Re-check that calculation <strong>step by step</strong>."</td>
+</tr>
+<tr>
+<td>Unexplained result</td>
+<td>"Give me <strong>three plausible explanations</strong>."</td>
+</tr>
+<tr>
+<td>Output too long</td>
+<td>"Give me a <strong>three-sentence version</strong>."</td>
+</tr>
+<tr>
+<td>Output too vague</td>
+<td>"Give me a <strong>specific example</strong> from the data."</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Budget most session time for <strong>follow-ups</strong>, not the opening prompt</li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>Ending and Resuming Sessions</h2>
+        <ul>
+<li><strong>Ctrl+C</strong> to exit — conversation history is not automatically saved</li>
+<li>Only what you've written to <strong>files</strong> persists between sessions</li>
+<li>Resume the most recent session with:</li>
+</ul>
+<pre><code class="language-bash">claude --continue
+</code></pre>
+<ul>
+<li>A fresh <code>claude</code> starts <strong>blank</strong> — previous conversation is gone unless you used <code>--continue</code></li>
+<li>Build this habit: before ending, ask CC to <strong>write a session summary</strong> to a notes file</li>
+<li>That notes file becomes your bridge to the next session (Chapter 07 covers CLAUDE.md for permanent project context)</li>
+</ul>
+      </section>
+      
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      progress: true,
+      transition: 'slide',
+      transitionSpeed: 'fast',
+      center: false,
+      plugins: [RevealHighlight, RevealNotes],
+    });
+  </script>
+</body>
+</html>

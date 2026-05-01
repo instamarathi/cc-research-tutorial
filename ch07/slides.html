@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Research Habits That Compound — Slides</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/theme/white.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/monokai.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --r-background-color: #ffffff;
+      --r-main-font: 'Inter', system-ui, sans-serif;
+      --r-heading-font: 'Inter', system-ui, sans-serif;
+      --r-heading-color: #312e81;
+      --r-heading-font-weight: 700;
+      --r-link-color: #6366f1;
+      --r-link-color-hover: #4338ca;
+      --r-selection-background-color: #c7d2fe;
+      --r-main-font-size: 28px;
+      --r-code-font: 'JetBrains Mono', monospace;
+    }
+
+    .reveal .slides section {
+      text-align: left;
+      overflow-y: auto;
+      max-height: 85vh;
+      padding: 0 0.5em;
+    }
+
+    .reveal h1, .reveal h2 {
+      text-transform: none;
+      letter-spacing: -0.02em;
+    }
+
+    .reveal h2 { font-size: 1.5em; margin-bottom: 0.6em; }
+    .reveal h3 { font-size: 1.15em; color: #4f46e5; margin: 0.8em 0 0.3em; }
+
+    .reveal p { line-height: 1.6; margin-bottom: 0.6em; font-size: 0.8em; }
+    .reveal li  { font-size: 0.78em; line-height: 1.55; }
+    .reveal ul, .reveal ol { margin-left: 1.2em; }
+
+    .reveal pre {
+      font-size: 0.6em;
+      border-radius: 6px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+      margin: 0.6em 0;
+    }
+
+    .reveal code:not(pre code) {
+      background: #eef2ff;
+      color: #4338ca;
+      padding: 0.1em 0.35em;
+      border-radius: 3px;
+      font-size: 0.82em;
+    }
+
+    .reveal blockquote {
+      border-left: 3px solid #6366f1;
+      background: #f5f3ff;
+      color: #3730a3;
+      padding: 0.5em 1em;
+      border-radius: 0 6px 6px 0;
+      font-style: normal;
+      font-size: 0.78em;
+      width: 95%;
+    }
+
+    .reveal table {
+      font-size: 0.7em;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    .reveal table th {
+      background: #eef2ff;
+      color: #312e81;
+      padding: 0.4em 0.8em;
+    }
+    .reveal table td { padding: 0.35em 0.8em; border-bottom: 1px solid #e5e7eb; }
+
+    /* Callout styles */
+    .reveal .callout {
+      border-radius: 6px;
+      padding: 0.6em 1em;
+      margin: 0.6em 0;
+      font-size: 0.72em;
+    }
+    .reveal .callout-tip  { background: #fefce8; border-left: 3px solid #eab308; }
+    .reveal .callout-try  { background: #eff6ff; border-left: 3px solid #3b82f6; }
+    .reveal .callout-warn { background: #fff7ed; border-left: 3px solid #f97316; }
+    .reveal .callout-note { background: #f0fdf4; border-left: 3px solid #22c55e; }
+    .reveal .callout-label {
+      font-weight: 700;
+      font-size: 0.85em;
+      display: block;
+      margin-bottom: 0.3em;
+    }
+    .reveal .callout p { margin: 0; font-size: 1em; }
+
+    /* Title slide */
+    .title-slide { text-align: center !important; }
+    .title-slide .chapter-num {
+      font-size: 0.6em;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #6366f1;
+      margin-bottom: 0.5em;
+    }
+    .title-slide h2 {
+      font-size: 1.8em;
+      color: #1e1b4b;
+      margin-bottom: 0.4em;
+    }
+    .title-slide .desc {
+      font-size: 0.7em;
+      color: #6b7280;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .title-slide .meta {
+      font-size: 0.6em;
+      color: #9ca3af;
+      margin-top: 1.5em;
+    }
+
+    /* Back button */
+    .back-btn {
+      position: fixed;
+      top: 14px;
+      left: 14px;
+      z-index: 1000;
+      background: #f5f3ff;
+      color: #4f46e5;
+      border: 1px solid #c7d2fe;
+      border-radius: 6px;
+      padding: 5px 12px;
+      font-size: 12px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .back-btn:hover { background: #ede9fe; }
+
+    /* Slide count badge */
+    .reveal .slide-number {
+      background: transparent;
+      color: #9ca3af;
+      font-size: 11px;
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="back-btn">← Chapter</a>
+
+  <div class="reveal">
+    <div class="slides">
+
+      <!-- Title slide -->
+      <section class="title-slide">
+        <div class="chapter-num">Chapter 07 · Claude Code Tutorial</div>
+        <h2>Research Habits That Compound</h2>
+        <p class="desc">CLAUDE.md, memory, hooks, workflows that improve over time.</p>
+        <p class="meta">30 min · 6 sections</p>
+      </section>
+
+      <!-- Content slides -->
+      
+      <section>
+        <h2>The Problem with One-Off Sessions</h2>
+        <ul>
+<li><strong>Reactive use</strong> — open terminal, fix problem, close; repeat from scratch next time</li>
+<li>Every new session starts with 10 minutes of re-explaining the project</li>
+<li>CC is a blank slate without context — its memory resets completely between sessions</li>
+<li>Friction accumulates: re-explanation minutes across a semester add up to <strong>hours</strong></li>
+<li>The tools in this chapter turn CC from a one-off assistant into a <strong>persistent research partner</strong></li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>CLAUDE.md: Your Project's Memory</h2>
+        <ul>
+<li>CC <strong>automatically reads <code>CLAUDE.md</code></strong> at project root when a session starts — no prompt needed</li>
+<li>Think of it as a briefing document for a capable assistant with total amnesia between visits</li>
+<li>Six things a research <code>CLAUDE.md</code> should contain:</li>
+<li><strong>Project name and research question</strong> — one sentence</li>
+<li><strong>Key concepts</strong> with precise definitions — terms CC might interpret generically</li>
+<li><strong>File structure</strong> — what lives where, what each script does, what outputs are final vs. intermediate</li>
+<li><strong>Current status</strong> — what's done, in progress, blocked</li>
+<li><strong>Conventions</strong> — naming schemes, date formats, style preferences</li>
+<li><strong>Do not list</strong> — common mistakes, files not to touch, commands not to run</li>
+<li>💡 Keep <code>CLAUDE.md</code> under 200 lines — long files waste context; move older logs to <code>CHANGELOG.md</code></li>
+<li>⚡ Ask CC: "Look at this directory. Write a CLAUDE.md for this project." Review, correct, done.</li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>Example: CLAUDE.md for the Weather Project</h2>
+        <pre><code class="language-markdown"># Weather &amp; Exercise Study
+**Question:** Does bad weather reduce daily exercise?
+**Data:** `weather_exercise/data/daily_steps.csv` — 50 people × 180 days
+**Key vars:** `steps`, `precip_mm`, `temp_c`, `day_of_week`, `person_id`
+**Always know:** rain effect ~28% step drop; temp effect smaller but significant
+**Status:** analysis complete; drafting blog post &quot;Why You Skip the Gym When It Rains&quot;
+**Do not touch:** `data/raw/` — use processed files in `data/` only
+</code></pre>
+<ul>
+<li><strong>Project + question block</strong> — one session start tells CC exactly what the project is for</li>
+<li><strong>Key vars line</strong> — prevents CC from guessing column names or misreading the schema</li>
+<li><strong>Always know line</strong> — seeds CC with the core finding so summaries stay consistent</li>
+<li><strong>Status line</strong> — CC picks up where you left off without a re-explanation preamble</li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>Hooks: Automating Repetitive Context</h2>
+        <ul>
+<li><strong>Hooks</strong> are shell commands that run automatically before or after CC actions</li>
+<li>Configured in <strong><code>.claude/settings.json</code></strong> in your project directory</li>
+<li>Common research uses:</li>
+<li>Before session: run <code>git status</code> so CC knows which files changed</li>
+<li>After CC edits a script: run your test suite automatically</li>
+<li>After CC writes output: run a linter to keep code consistent</li>
+<li>Example hook entry runs <code>git status</code> before every Bash tool use:</li>
+</ul>
+<pre><code class="language-json">{
+  &quot;hooks&quot;: {
+    &quot;preToolUse&quot;: [
+      { &quot;matcher&quot;: &quot;Bash&quot;,
+        &quot;hooks&quot;: [{ &quot;type&quot;: &quot;command&quot;, &quot;command&quot;: &quot;git status&quot; }] }
+    ]
+  }
+}
+</code></pre>
+<ul>
+<li><strong>Start with <code>CLAUDE.md</code></strong> — reach for hooks only when you have a specific recurring friction point</li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>Example: Auto-Run Analysis on New Data</h2>
+        <pre><code class="language-json">{
+  &quot;hooks&quot;: {
+    &quot;postToolUse&quot;: [
+      { &quot;matcher&quot;: &quot;Write&quot;,
+        &quot;hooks&quot;: [{ &quot;type&quot;: &quot;command&quot;,
+          &quot;command&quot;: &quot;if echo '$CLAUDE_TOOL_OUTPUT' | grep -q 'data/.*\\.csv'; then uv run python analysis.py; fi&quot; }] }
+    ]
+  }
+}
+</code></pre>
+<ul>
+<li><strong>Trigger on CSV writes:</strong> any time CC writes a file matching <code>data/*.csv</code>, the analysis script re-runs automatically</li>
+<li><strong>Catches stale results:</strong> without the hook, it's easy to edit raw data and forget to re-run — findings drift from the file on disk</li>
+<li><strong>uv run keeps deps locked:</strong> the hook uses <code>uv run python</code> so the correct environment is always active, not whatever <code>python</code> resolves to</li>
+<li><strong>Low friction, high reliability:</strong> one config change eliminates a manual step that's easy to skip under deadline pressure</li>
+</ul>
+      </section>
+      
+      <section>
+        <h2>Building a Workflow That Compounds</h2>
+        <ul>
+<li><strong>Monday:</strong> Update <code>CLAUDE.md</code> — move last week's work to completed, write this week's priorities (5 min)</li>
+<li><strong>Daily start:</strong> "Read CLAUDE.md. What should I work on today?" — task recommendation grounded in your own priorities</li>
+<li><strong>After analysis:</strong> "Update the Current Status section of CLAUDE.md with what we just did." — closes the loop</li>
+<li><strong>Before writing:</strong> "Read CLAUDE.md and style-guide.md. Let's draft the methods section." — CC writes in your voice</li>
+<li>After a month, <code>CLAUDE.md</code> encodes <strong>hard-won project knowledge</strong>: data quirks, failed approaches, advisor framing</li>
+<li>💡 Treat CC as a collaborator, not a tool — collaborators need context, and context compounds</li>
+</ul>
+      </section>
+      
+
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/highlight/highlight.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+
+  <script>
+    Reveal.initialize({
+      hash: true,
+      slideNumber: 'c/t',
+      progress: true,
+      transition: 'slide',
+      transitionSpeed: 'fast',
+      center: false,
+      plugins: [RevealHighlight, RevealNotes],
+    });
+  </script>
+</body>
+</html>

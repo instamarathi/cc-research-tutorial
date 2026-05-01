@@ -121,6 +121,17 @@ def parse_quiz(text: str) -> list:
     return questions
 
 
+def parse_slides(text: str) -> list:
+    """Split lecture.md into slide dicts, one per ## section."""
+    slides = []
+    parts = re.split(r'^(## .+)$', text, flags=re.MULTILINE)
+    for i in range(1, len(parts), 2):
+        heading = parts[i][3:].strip()
+        body = parts[i + 1] if i + 1 < len(parts) else ''
+        slides.append({"title": heading, "html": render_md(body.strip())})
+    return slides
+
+
 def build():
     root = Path(__file__).parent
     env = Environment(loader=FileSystemLoader(str(root / 'templates')))
@@ -157,6 +168,20 @@ def build():
                 next_page=_next_page(i, page_type),
             )
             (chapter_dir / f'{page_type}.html').write_text(html, encoding='utf-8')
+
+        # Build slides from slides.md (falls back to lecture.md)
+        slides_src_path = chapter_dir / 'slides.md'
+        if not slides_src_path.exists():
+            slides_src_path = chapter_dir / 'lecture.md'
+        if slides_src_path.exists():
+            slides = parse_slides(slides_src_path.read_text(encoding='utf-8'))
+            slides_tmpl = env.get_template('slides.html')
+            slides_out = slides_tmpl.render(
+                chapter=chapter,
+                chapter_index=i,
+                slides=slides,
+            )
+            (chapter_dir / 'slides.html').write_text(slides_out, encoding='utf-8')
 
         idx_tmpl = env.get_template('chapter-index.html')
         idx_html = idx_tmpl.render(
